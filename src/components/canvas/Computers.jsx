@@ -18,7 +18,7 @@ const Computers = () => {
 
         <primitive
         object={dumbbell.scene}
-        
+        scale={10}
         
         
         />
