@@ -37,12 +37,9 @@ const ComputersCanvas = () => {
     camera={{ position: [20, 3, 5], fov: 50 }}
     gl={{preserveDrawingBuffer: true}}
     >
-      <Suspense fallback={<CanvasLoader />}>
         <OrbitControls enableZoom={false} />
         <Computers />
-      </Suspense>
 
-      <Preload all/>
     </Canvas>
   )
 
