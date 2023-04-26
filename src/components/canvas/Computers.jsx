@@ -41,6 +41,8 @@ const ComputersCanvas = () => {
         <OrbitControls enableZoom={false} />
         <Computers />
       </Suspense>
+
+      <Preload all/>
     </Canvas>
   )
 
