@@ -1,0 +1,11 @@
+Model Information:
+* title:	Gym Props
+* source:	https://sketchfab.com/3d-models/gym-props-46da6b4b3a8e439e9192c76ca12fb176
+* author:	Kyle Rooze (https://sketchfab.com/KyleRooze)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Gym Props" (https://sketchfab.com/3d-models/gym-props-46da6b4b3a8e439e9192c76ca12fb176) by Kyle Rooze (https://sketchfab.com/KyleRooze) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

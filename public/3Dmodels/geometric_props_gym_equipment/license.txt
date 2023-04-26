@@ -1,0 +1,11 @@
+Model Information:
+* title:	Geometric Props: Gym Equipment
+* source:	https://sketchfab.com/3d-models/geometric-props-gym-equipment-94aeb9a67a1845e586adfb5ffcc15b37
+* author:	CCreations15 (https://sketchfab.com/CCreations15)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Geometric Props: Gym Equipment" (https://sketchfab.com/3d-models/geometric-props-gym-equipment-94aeb9a67a1845e586adfb5ffcc15b37) by CCreations15 (https://sketchfab.com/CCreations15) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

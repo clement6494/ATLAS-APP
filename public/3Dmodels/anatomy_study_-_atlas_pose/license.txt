@@ -1,0 +1,11 @@
+Model Information:
+* title:	Anatomy study - Atlas Pose
+* source:	https://sketchfab.com/3d-models/anatomy-study-atlas-pose-58360ec741104614a12b0f465b889952
+* author:	Francisco Alvarez Mendez (https://sketchfab.com/FranciscoAlvarez)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Anatomy study - Atlas Pose" (https://sketchfab.com/3d-models/anatomy-study-atlas-pose-58360ec741104614a12b0f465b889952) by Francisco Alvarez Mendez (https://sketchfab.com/FranciscoAlvarez) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
