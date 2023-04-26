@@ -20,6 +20,7 @@ const Computers = () => {
         object={dumbbell.scene}
         scale={10}
         
+        
         />
 
 
