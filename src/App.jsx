@@ -7,7 +7,7 @@ function App() {
   return (
     <BrowserRouter> 
       <div className='relative z-0 bg-primary'>
-        <BackgroundScene >
+        <BackgroundScene className='fixed z-0 top-0 ' />
         <div className='bg-hero-patternbg-cover bg-no-repeat bg-center '>
           <Navbar />
           <Hero></Hero>
@@ -22,7 +22,7 @@ function App() {
           <StarsCanvas />
 
         </div>
-        </BackgroundScene>
+        
       </div>
     </BrowserRouter>
   )

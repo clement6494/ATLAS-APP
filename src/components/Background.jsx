@@ -8,17 +8,20 @@ import { KettlebellCanvas } from './canvas';
 
 const Hero = () => {
   return (
-    <section className='relative w-full h-screen mx-auto'>
+    
       <div className= {`${styles.paddingX} absolute inset-0 top-[120px]
-      max-w-7x1 mx-auto flex flex-row items-start gap-5`} >
+      max-w-7x1 mx-auto flex flex-col items-start gap-5`} >
 
-        <DumbbellCanvas/>
+        <DumbbellCanvas  />
+
+
+        <KettlebellCanvas  />
 
 
       </div>
 
       
-    </section>
+    
   )
 }
 

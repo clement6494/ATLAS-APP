@@ -11,14 +11,18 @@ const Kettlebell = () => {
 
   return (
     <mesh>
-        <hemisphereLight intensity={3}
-        groundColor="black" />
+        <hemisphereLight intensity={1}
+        groundColor="white" />
 
-        <pointLight intensity={5} />
+        <pointLight intensity={100} 
+        position={ [5,10,-20] }/>
+
+        <pointLight intensity={100} 
+        position={ [5,10,20] }/>
 
         <primitive
         object={Kettlebell.scene}
-        scale={10}
+        scale={100}
         
         
         />
