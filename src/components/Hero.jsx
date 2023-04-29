@@ -24,7 +24,7 @@ const Hero = () => {
 
       </div>
 
-      <DumbbellCanvas />
+      
     </section>
   )
 }
