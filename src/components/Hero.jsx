@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 import {styles} from '../styles';
-import { ComputersCanvas } from './canvas';
+import { DumbbellCanvas } from './canvas';
 /**import { ComputerCanvas } from './canvas' ; */
 
 const Hero = () => {
@@ -24,7 +24,7 @@ const Hero = () => {
 
       </div>
 
-      <ComputersCanvas />
+      <DumbbellCanvas />
     </section>
   )
 }
