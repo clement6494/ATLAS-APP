@@ -11,14 +11,14 @@ const Dumbbell = () => {
 
   return (
     <mesh>
-        <hemisphereLight intensity={1.55}
+        <hemisphereLight intensity={1}
         groundColor="black" />
 
         <pointLight intensity={1} />
 
         <primitive
         object={dumbbell.scene}
-        scale={10}
+        scale={100}
         
         
         />
@@ -34,7 +34,7 @@ const DumbbellCanvas = () => {
     <Canvas
     frameloop='demand'
     
-    camera={{ position: [20, 3, 5], fov: 50 }}
+    camera={{ position: [25, 50, 10], fov: 50 }}
     gl={{preserveDrawingBuffer: true}}
     >
        <Suspense fallback={<CanvasLoader />}>
