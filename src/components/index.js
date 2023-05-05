@@ -8,6 +8,7 @@ import Works from './Works';
 import Feedbacks from './Feedbacks';
 import Contact from './Contact';
 import BackgroundScene from './Background';
+import Programs from './Programs';
 
 export {
   Hero,
@@ -22,5 +23,6 @@ export {
   BallCanvas, 
   DumbbellCanvas, 
   StarsCanvas,
-  BackgroundScene
+  BackgroundScene,
+  Programs,
 }
