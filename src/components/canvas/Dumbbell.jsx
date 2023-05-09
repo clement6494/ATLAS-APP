@@ -31,7 +31,7 @@ const Dumbbell = () => {
 const DumbbellCanvas = () => {
   return (
 
-    <Canvas
+    <Canvas className='z-0'
     frameloop='demand'
     
     camera={{ position: [25, 50, 10], fov: 50 }}

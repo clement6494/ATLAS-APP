@@ -10,7 +10,7 @@ const Hero = () => {
   return (
     
       <div className= {`${styles.paddingX} absolute inset-0 top-[120px]
-      max-w-7x1 mx-auto flex flex-col items-start gap-5`} >
+      max-w-7x1 mx-auto flex flex-col items-start gap-5 z-0`} >
 
         <DumbbellCanvas  />
 

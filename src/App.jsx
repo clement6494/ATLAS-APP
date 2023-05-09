@@ -6,20 +6,21 @@ function App() {
 
   return (
     <BrowserRouter> 
-      <div className='relative z-0 bg-primary'>
+      <div id='body' className='relative z-0 '>
         <BackgroundScene className='fixed z-0 top-0 ' />
         <div className='bg-hero-patternbg-cover bg-no-repeat bg-center '>
           <Navbar />
           <Hero></Hero>
         </div>
+        
+        
+        <div className='relative z-0'>
         <About />
         <Programs />
         <Experience />
         <Tech />
         <Works />
         <Feedbacks />
-        
-        <div className='relative z-0'>
           <Contact />
           <StarsCanvas />
 
