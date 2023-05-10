@@ -53,7 +53,7 @@ const BackgroundScene = () => {
  
 
   return (
-    <div class='canvas-container' style={{ height: mainHeight }}  > 
+    <div className='canvas-container' style={{ height: mainHeight }}  > 
     <Canvas>
 
 

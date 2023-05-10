@@ -12,7 +12,7 @@ const Navbar = () => {
   const [toggle, setToggle ] = useState(false);
 
   return (
-    <div class='header' >
+    <div className='header' >
     <nav  className={`
     ${styles.paddingX} w-full 
     flex items-center  

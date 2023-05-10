@@ -2,8 +2,8 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div class='footer'>
-        <div class='copyright' > 
+    <div className='footer'>
+        <div className='copyright' > 
             COPYRIGHT © 2022 Guibert CO., LTD. ALL RIGHTS RESERVED. 
          </div>
     
