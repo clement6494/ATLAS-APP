@@ -229,3 +229,32 @@ body {
 
 
 }
+
+.footer {
+
+  height: 50px;
+  width: 100%;
+  padding: 0 5%;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+  position: fixed;
+  bottom: 0;
+  box-sizing: border-box;
+
+
+}
+
+.copyright{
+  position: relative;
+  font-size: 8px;
+  letter-spacing: .01em;
+  padding-left: 2vw;
+  right: 0;
+  font-family: Roboto, sans-serif ;
+  color: #777;
+  box-sizing: border-box;
+}

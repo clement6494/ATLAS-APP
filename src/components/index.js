@@ -9,6 +9,7 @@ import Feedbacks from './Feedbacks';
 import Contact from './Contact';
 import BackgroundScene from './Background';
 import Programs from './Programs';
+import Footer from './Footer';
 
 export {
   Hero,
@@ -25,4 +26,5 @@ export {
   StarsCanvas,
   BackgroundScene,
   Programs,
+  Footer,
 }
