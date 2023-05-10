@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 import {styles} from './styles';
@@ -36,11 +36,24 @@ function RotatingTorus() {
 
 const BackgroundScene = () => {
 
+  const [mainHeight, setMainHeight] = useState(0);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setMainHeight(window.innerHeight - 100);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
  
 
   return (
-    <div id='canvas-container' className='h-[500px]' > 
+    <div class='canvas-container' style={{ height: mainHeight }}  > 
     <Canvas>
 
 

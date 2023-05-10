@@ -12,9 +12,10 @@ const Navbar = () => {
   const [toggle, setToggle ] = useState(false);
 
   return (
-    <nav className={`
+    <div class='header' >
+    <nav  className={`
     ${styles.paddingX} w-full 
-    flex items-center py-5 fixed top-0 z-20 bg-primary 
+    flex items-center  
     `}  > 
 
       <div className='w-full flex justify-between
@@ -89,6 +90,7 @@ const Navbar = () => {
 
 
     </nav>
+    </div>
   );
 };
 /**          <div className='sm:hidden flex flex-1 justify-end items-center'>
