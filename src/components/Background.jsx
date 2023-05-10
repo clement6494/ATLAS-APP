@@ -18,7 +18,8 @@ function RotatingTorus() {
   useFrame(({clock}) => {
     const a= clock.getElapsedTime()
     myMesh.current.rotation.x= a * 0.5
-    myMesh.current.rotation.y= a* 0.1
+    myMesh.current.rotation.y= a* 0.3
+    myMesh.current.rotation.z= a * 0.2
     
   });
 
