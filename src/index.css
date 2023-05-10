@@ -218,7 +218,14 @@
 }
 
 body {
-  background-image: url("../public/background/seamless-geometric-pattern-with-stripes-modern-background-with-repeating-lines-dark-pattern-luxury-monochrome-backdrop-texture-for-wrapping-paper-branding-business-corporate-style-free-vector.jpg");
+  background-image: url("/background/seamless-geometric-pattern-with-stripes-modern-background-with-repeating-lines-dark-pattern-luxury-monochrome-backdrop-texture-for-wrapping-paper-branding-business-corporate-style-free-vector.jpg");
   background-repeat: repeat ;
+
+}
+
+#canvas-container {
+ 
+  text-align: center;
+
 
 }
