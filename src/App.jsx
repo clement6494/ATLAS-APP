@@ -9,9 +9,8 @@ function App() {
   return (
     <BrowserRouter> 
 
-      <div id='body' className='relative '>
-        <div></div>
-        
+      <div id='content' >
+        <Navbar/>
         <BackgroundScene/>
         <Footer data-visible='true'/>
       </div>
