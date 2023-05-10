@@ -231,8 +231,17 @@ body {
   top: 0;
   margin: 0;
   box-sizing: border-box;
+  width: 100%;
+  height: 100%;
 
 
+}
+
+.section-wrapper {
+
+  width: fit-content;
+
+  height: fit-content;
 }
 
 .footer {

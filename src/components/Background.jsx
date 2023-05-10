@@ -36,24 +36,11 @@ function RotatingTorus() {
 
 const BackgroundScene = () => {
 
-  const [mainHeight, setMainHeight] = useState(0);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setMainHeight(window.innerHeight - 100);
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
  
 
   return (
-    <div className='canvas-container' style={{ height: mainHeight }}  > 
+    <div className='canvas-container'   > 
     <Canvas>
 
 
