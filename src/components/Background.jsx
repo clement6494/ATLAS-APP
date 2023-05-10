@@ -11,26 +11,41 @@ import { OrbitControls, Preload, useGLTF } from '@react-three/drei';
 
 
 
+function RotatingTorus() {
 
+  const myMesh= useRef();
+
+  useFrame(({clock}) => {
+    const a= clock.getElapsedTime()
+    myMesh.current.rotation.x= a * 0.5
+    myMesh.current.rotation.y= a* 0.1
+    
+  });
+
+  return (
+    <mesh ref={myMesh} >
+    <torusGeometry args={ [ 2 , 0.5, 25, 70] }  />
+    <meshNormalMaterial color='red'  />
+  </mesh>
+  )
+
+
+}
 
 
 const BackgroundScene = () => {
 
-  
+
  
 
   return (
-    <div id='canvas-container' className='h-[100%]' > 
+    <div id='canvas-container' className='h-[500px]' > 
     <Canvas>
 
+
+        <RotatingTorus/>
         <ambientLight intensity={0.1} />
         <pointLight position={[10, 10, 10]} intensity={10} />
-
-        <mesh>
-          <torusGeometry args={ [ 2 , 1, 2, 70] } />
-          <meshNormalMaterial color='red'  />
-        </mesh>
-
 
 
     </Canvas>
