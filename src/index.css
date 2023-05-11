@@ -223,6 +223,13 @@ body {
 
 }
 
+
+.content-wrapper{
+
+  display: flex;
+  flex-direction: column;
+
+}
 .canvas-container {
  
   position: relative;
@@ -238,10 +245,8 @@ body {
 }
 
 .section-wrapper {
-
-  width: fit-content;
-
-  height: fit-content;
+  flex-grow: 2;
+  
 }
 
 .footer {
