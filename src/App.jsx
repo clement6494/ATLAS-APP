@@ -26,8 +26,10 @@ function App() {
       <div className='content-wrapper' style={{ height: mainHeight }} >
         <Navbar/>
         <div className="section-wrapper">
-        <BackgroundScene/>
+          <BackgroundScene/>
+          <Contact/>
         </div>
+        
         <Footer data-visible='true'/>
       </div>
     </BrowserRouter>
