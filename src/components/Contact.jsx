@@ -4,7 +4,7 @@ import {styles} from './styles';
 
 const Contact = () => {
   return (
-    <div  className='section6' > 
+    <div  className='section6'  > 
       <div className='section6-text'  >
         <a className={`contact-text ${styles.heroHeadText}`} href='' >
          Rejoins l'<span className='rainbow-text'>aventure</span> maintenant!

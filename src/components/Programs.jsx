@@ -5,7 +5,7 @@ import {styles} from './styles';
 function Programs() {
   
     return (
-      <div className=' flex flex-col justify-center items-center mt-5 z-20'>
+      <div className='section3'>
         
         <div className=' transparent-black-gradient rounded-xl min-w-[200px] px-[2em]' >
         <h2 className={`${styles.heroHeadText}`} >Programmes</h2>
