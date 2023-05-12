@@ -31,7 +31,10 @@ function App() {
         <Navbar/>
         <div className="section-wrapper">
           <BackgroundScene/>
-          <Contact/>
+          <Hero/>
+          <About/>
+          <Programs/>
+          <Contact  />
         </div>
         
         <Footer data-visible='true'/>
