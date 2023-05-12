@@ -1,6 +1,10 @@
-import { useState, useEffect  } from 'react'
+import {Suspense,  useState, useEffect  } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Works, StarsCanvas, BackgroundScene, Programs, Footer } from './components';
+
+
+import CanvasLoader from './components/Loader';
+
 function App() {
   
   const [mainHeight, setMainHeight] = useState(0);
@@ -22,7 +26,7 @@ function App() {
 
   return (
     <BrowserRouter> 
-
+      <Suspense fallback={<CanvasLoader />}>
       <div className='content-wrapper' style={{ height: mainHeight }} >
         <Navbar/>
         <div className="section-wrapper">
@@ -32,6 +36,9 @@ function App() {
         
         <Footer data-visible='true'/>
       </div>
+      </Suspense>
+
+
     </BrowserRouter>
   )
 }

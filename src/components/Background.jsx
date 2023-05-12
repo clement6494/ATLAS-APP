@@ -48,7 +48,7 @@ const BackgroundScene = () => {
         <ambientLight intensity={0.1} />
         <pointLight position={[10, 10, 10]} intensity={10} />
 
-
+        <Preload all />
     </Canvas>
    
     </div>
