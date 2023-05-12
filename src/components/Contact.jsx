@@ -6,8 +6,8 @@ const Contact = () => {
   return (
     <div  className='section6' > 
       <div className='section6-text'  >
-        <a className={`${styles.heroHeadText}`} href='' >
-         Rejoins l'aventure maintenant!
+        <a className={`contact-text ${styles.heroHeadText}`} href='' >
+         Rejoins l'<span className='rainbow-text'>aventure</span> maintenant!
          </a>
       </div>
       <div className="section6-link" >

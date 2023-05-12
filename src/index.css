@@ -394,6 +394,28 @@ body {
 }
 
 .rainbow-text {
-  text-decoration-color: linear-gradient(18deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%) ;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 
+  background-image: linear-gradient(to right, rgb(199, 104, 104), orange, rgb(93, 219, 228),rgb(212, 235, 81), rgb(224, 105, 214), blue, rgb(104, 56, 138), violet);
+}
+
+.rainbow-text:hover{
+  transition: 0.5s ;
+  color: black;
+
+}
+
+.contact-text:hover {
+  animation: translateY 0.5s linear 1;
+}
+
+@keyframes translateY{
+  0%{
+    transform: translateY(0px);
+  }
+  100%{
+    transform: translateY(-10px);
+  }
 }
