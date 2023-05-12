@@ -1,10 +1,16 @@
 import React from 'react'
+import {styles} from './styles';
+
 
 const Contact = () => {
   return (
     <div  className='section6' > 
-      <div></div>
-      <div className="section6-link">
+      <div className='section6-text'  >
+        <a className={`${styles.heroHeadText}`} href='' >
+         Rejoins l'aventure maintenant!
+         </a>
+      </div>
+      <div className="section6-link" >
 						<div className="section6-link-item">
 							<a href="" target="_blank" rel="noopener noreferrer">
 								<svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
