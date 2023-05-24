@@ -12,9 +12,13 @@ const Dumbbell = () => {
   return (
     <mesh>
         <hemisphereLight intensity={1}
-        groundColor="black" />
+        groundColor="white" />
 
-        <pointLight intensity={1} />
+        <pointLight intensity={100} 
+        position={ [5,10,-20] }/>
+
+        <pointLight intensity={100} 
+        position={ [5,10,20] }/>
 
         <primitive
         object={dumbbell.scene}
@@ -27,6 +31,8 @@ const Dumbbell = () => {
     </mesh>
   )
 }
+
+
 
 const DumbbellCanvas = () => {
   return (
@@ -49,4 +55,4 @@ const DumbbellCanvas = () => {
   )
 
 }
-export default DumbbellCanvas
+export {Dumbbell, DumbbellCanvas}

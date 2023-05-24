@@ -1,4 +1,4 @@
-import {Suspense , useEffect , useState } from 'react';
+import {Suspense , useEffect ,useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Preload, useGLTF } from '@react-three/drei';
 
@@ -6,11 +6,12 @@ import CanvasLoader from '../Loader';
 
 
 const Kettlebell = () => {
+    /**************************************************** */
 
   const Kettlebell = useGLTF('./3Dmodels/Kettlebell/scene.gltf')
 
   return (
-    <mesh>
+    <mesh  >
         <hemisphereLight intensity={1}
         groundColor="white" />
 
@@ -20,9 +21,9 @@ const Kettlebell = () => {
         <pointLight intensity={100} 
         position={ [5,10,20] }/>
 
-        <primitive
+        <primitive  
         object={Kettlebell.scene}
-        scale={100}
+        scale={50}
         
         
         />
@@ -33,8 +34,28 @@ const Kettlebell = () => {
 }
 
 const KettlebellCanvas = () => {
-  return (
 
+  /**   moving camera on scroll */
+
+
+const moveCamera = () => {
+
+
+  console.log('Scrolled!');
+}
+
+useEffect(() => {
+  window.addEventListener('wheel', moveCamera);
+
+  // Clean up the event listener when the component unmounts
+  return () => {
+    window.removeEventListener('wheel', moveCamera);
+  };
+}, []);
+
+/****************************************** */
+
+  return (
     <Canvas
     frameloop='demand'
     
