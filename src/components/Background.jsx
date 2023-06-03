@@ -21,7 +21,13 @@ const Dumbbell = ({ ...props }) => {
     const offset = 1 - scroll.offset
     
     state.camera.position.set(Math.sin(offset) * -10, Math.atan(offset * Math.PI * 2) * 5, Math.cos((offset * Math.PI) / 3) * -10)
-    state.camera.lookAt(0, 0, 0)
+    
+    if (state.camera.position.y>5){
+      state.camera.lookAt(0, 0, 0);}
+    else{ state.camera.lookAt(50, 0, 0);}
+
+
+    console.log(state.camera.position);
   })
 
   return (
@@ -123,7 +129,7 @@ const BackgroundScene = () => {
         <ScrollControls horizontal pages={2} >
 
             <Dumbbell  scale={10} position={[0, -3, 0]}/>
-            <Kettlebell scale={10} position={[0, -3, 0]}/>
+            <Kettlebell scale={50} position={[50, -3, 0]}/>
             <RotatingTorus/>
           </ScrollControls>
         </Suspense>
