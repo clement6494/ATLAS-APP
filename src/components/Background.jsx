@@ -20,14 +20,14 @@ const Dumbbell = ({ ...props }) => {
     // The offset is between 0 and 1, you can apply it to your models any way you like
     const offset = 1 - scroll.offset
     
-    state.camera.position.set(Math.sin(offset) * -10, Math.atan(offset * Math.PI * 2) * 5, Math.cos((offset * Math.PI) / 3) * -10)
+    state.camera.position.set(Math.sin(offset) * -10, (Math.atan(offset * Math.PI * 10-30) + Math.atan(offset * Math.PI * 10-20) + Math.atan(offset * Math.PI * 10-10) ) * 5, Math.cos((offset * Math.PI) / 3) * -10)
     
-    if (state.camera.position.y>5){
-      state.camera.lookAt(0, 0, 0);}
-    else{ state.camera.lookAt(50, 0, 0);}
+
+    state.camera.lookAt(0, 0, 0);
 
 
-    console.log(state.camera.position);
+
+    console.log(state.camera.position)
   })
 
   return (
