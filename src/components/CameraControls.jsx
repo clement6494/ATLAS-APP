@@ -44,6 +44,7 @@ const CameraControls = () => {
     if (isMobileDevice()) {
       // Custom camera movement for smartphones
       const offset = 1 - scroll.offset;
+      
 
       state.camera.position.set(
         20,
