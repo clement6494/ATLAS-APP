@@ -13,7 +13,7 @@ import CanvasLoader from './Loader';
 /** loading of the objects */
 const Dumbbell = ({ ...props }) => {
   const scroll = useScroll()
-  const dumbbell = useGLTF('./3Dmodels/dumbbells/scene.gltf')
+  /*const dumbbell = useGLTF('./3Dmodels/dumbbells/scene.gltf')*/
 
   useFrame((state) => {
    
@@ -37,7 +37,7 @@ const Dumbbell = ({ ...props }) => {
     <mesh>
 
 
-        <primitive object={dumbbell.scene} {...props} />
+<Text> askip </Text>
 
 
     </mesh>
@@ -133,7 +133,7 @@ const BackgroundScene = () => {
         <ScrollControls horizontal pages={3} >
 
             <Dumbbell  scale={10} position={[0, -3, 0]}/>
-            <Kettlebell scale={50} position={[50, -3, 0]}/>
+            
             <RotatingTorus position={[0, 27, 0]}/>
             <RotatingTorus position={[0, 15, 0]}/>
             <RotatingTorus position={[0, 0, 0]}/>
