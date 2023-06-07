@@ -73,7 +73,7 @@ function RotatingTorus({...props}) {
     <mesh ref={myMesh}  {...props}>
     <torusGeometry args={ [ 2 , 0.5, 25, 70] }  />
     <meshNormalMaterial color='red'  />
-    <Text> askip                        ca              avance pas</Text>
+    <Text>  section</Text>
 
   </mesh>
   )
