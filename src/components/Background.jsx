@@ -7,7 +7,7 @@ import { KettlebellCanvas } from './canvas';
 /**import { ComputerCanvas } from './canvas' ; */
 
 import { Canvas, useFrame, useThree, extend } from '@react-three/fiber';
-import { OrbitControls, Preload, ScrollControls, useGLTF, useScroll } from '@react-three/drei';
+import { OrbitControls, Preload, ScrollControls, useGLTF, useScroll,Text } from '@react-three/drei';
 import CanvasLoader from './Loader';
 
 /** loading of the objects */
@@ -20,10 +20,13 @@ const Dumbbell = ({ ...props }) => {
     // The offset is between 0 and 1, you can apply it to your models any way you like
     const offset = 1 - scroll.offset
     
-    state.camera.position.set(Math.sin(offset) * -10, (Math.atan(offset * Math.PI * 10-30) + Math.atan(offset * Math.PI * 10-20) + Math.atan(offset * Math.PI * 10-10) ) * 5, Math.cos((offset * Math.PI) / 3) * -10)
+    state.camera.position.set(/*Math.sin(offset) * -10*/20, 
+      (Math.atan(offset * Math.PI * 10-30) + Math.atan(offset * Math.PI * 10-25) + Math.atan(offset * Math.PI * 10-20) + Math.atan(offset * Math.PI * 10-2) ) * 5,
+       0/*Math.cos((offset * Math.PI) / 3) * -10*/)
     
 
-    state.camera.lookAt(0, 0, 0);
+    state.camera.lookAt(0,(Math.atan(offset * Math.PI * 10-30) + Math.atan(offset * Math.PI * 10-25) + Math.atan(offset * Math.PI * 10-20) + Math.atan(offset * Math.PI * 10-2) ) * 5,0)
+       
 
 
 
@@ -57,7 +60,7 @@ return (
 )
 }
 
-function RotatingTorus() {
+function RotatingTorus({...props}) {
 
   const myMesh= useRef();
   
@@ -72,9 +75,10 @@ function RotatingTorus() {
   });
 
   return (
-    <mesh ref={myMesh} >
+    <mesh ref={myMesh}  {...props}>
     <torusGeometry args={ [ 2 , 0.5, 25, 70] }  />
     <meshNormalMaterial color='red'  />
+    <Text> askip                        ca              avance pas</Text>
 
   </mesh>
   )
@@ -126,11 +130,16 @@ const BackgroundScene = () => {
       position={ [5,10,20] }/>
       <OrbitControls enableZoom={false} />
        <Suspense fallback={<CanvasLoader />}>
-        <ScrollControls horizontal pages={2} >
+        <ScrollControls horizontal pages={3} >
 
             <Dumbbell  scale={10} position={[0, -3, 0]}/>
             <Kettlebell scale={50} position={[50, -3, 0]}/>
-            <RotatingTorus/>
+            <RotatingTorus position={[0, 27, 0]}/>
+            <RotatingTorus position={[0, 15, 0]}/>
+            <RotatingTorus position={[0, 0, 0]}/>
+            <RotatingTorus position={[0, -14, 0]}/>
+            <RotatingTorus position={[0, -28, 0]}/>
+
           </ScrollControls>
         </Suspense>
         
