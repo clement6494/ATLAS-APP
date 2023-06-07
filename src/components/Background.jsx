@@ -35,10 +35,7 @@ const Dumbbell = ({ ...props }) => {
 
   return (
     <mesh>
-
-
-<Text> askip </Text>
-
+      <primitive  object={Dumbbell.scene} {...props} />
 
     </mesh>
   )
@@ -52,9 +49,7 @@ const Kettlebell = useGLTF('./3Dmodels/Kettlebell/scene.gltf')
 return (
   <mesh  >
 
-
       <primitive  object={Kettlebell.scene} {...props} />
-
 
   </mesh>
 )
@@ -90,15 +85,25 @@ function RotatingTorus({...props}) {
 /** handling of the camera movements */
 
 const CameraControls = () => {
-  const { camera, gl } = useThree();
-  const controlsRef = useRef();
+  const scroll = useScroll()
 
-  useFrame(() => {
-    controlsRef.current.update();
-  });
+  useFrame((state) => {
+   
+    // The offset is between 0 and 1, you can apply it to your models any way you like
+    const offset = 1 - scroll.offset
+    
+    state.camera.position.set(/*Math.sin(offset) * -10*/20, 
+      (Math.atan(offset * Math.PI * 10-30) + Math.atan(offset * Math.PI * 10-25) + Math.atan(offset * Math.PI * 10-20) + Math.atan(offset * Math.PI * 10-2) ) * 5,
+       0/*Math.cos((offset * Math.PI) / 3) * -10*/)
+    
 
-  return <OrbitControls ref={controlsRef} args={[camera, gl.domElement]} />;
-};
+    state.camera.lookAt(0,(Math.atan(offset * Math.PI * 10-30) + Math.atan(offset * Math.PI * 10-25) + Math.atan(offset * Math.PI * 10-20) + Math.atan(offset * Math.PI * 10-2) ) * 5,0)
+       
+
+
+
+    console.log(state.camera.position)
+  })};
 
 
 
@@ -132,7 +137,7 @@ const BackgroundScene = () => {
        <Suspense fallback={<CanvasLoader />}>
         <ScrollControls horizontal pages={3} >
 
-            <Dumbbell  scale={10} position={[0, -3, 0]}/>
+            <CameraControls/>
             
             <RotatingTorus position={[0, 27, 0]}/>
             <RotatingTorus position={[0, 15, 0]}/>
