@@ -90,19 +90,41 @@ const CameraControls = () => {
   useFrame((state) => {
    
     // The offset is between 0 and 1, you can apply it to your models any way you like
-    const offset = 1 - scroll.offset
+    const offset = 1 - scroll.offset;
+    const altitude=state.camera.position.y;
+    const factor = 10.3 ;
+
     
     state.camera.position.set(/*Math.sin(offset) * -10*/20, 
       (Math.atan(offset * Math.PI * 10-30) + Math.atan(offset * Math.PI * 10-25) + Math.atan(offset * Math.PI * 10-20) + Math.atan(offset * Math.PI * 10-2) ) * 5,
        0/*Math.cos((offset * Math.PI) / 3) * -10*/)
     
 
-    state.camera.lookAt(0,(Math.atan(offset * Math.PI * 10-30) + Math.atan(offset * Math.PI * 10-25) + Math.atan(offset * Math.PI * 10-20) + Math.atan(offset * Math.PI * 10-2) ) * 5,0)
+
        
 
+      
+    if (altitude<-9 && altitude >-20 )  {  
+    console.log("altitude :" + altitude )
+    state.camera.lookAt(
+      Math.cos(factor*(offset-0.18))*10,
+      (Math.atan(offset * Math.PI * 10-30) + Math.atan(offset * Math.PI * 10-25) + Math.atan(offset * Math.PI * 10-20) + Math.atan(offset * Math.PI * 10-2) ) * 5,
+      Math.sin(factor*(offset-0.18))*10
 
+      )
 
-    console.log(state.camera.position)
+    }
+
+    else {
+      console.log("vertical" )
+
+      state.camera.lookAt(
+        0,
+        (Math.atan(offset * Math.PI * 10-30) + Math.atan(offset * Math.PI * 10-25) + Math.atan(offset * Math.PI * 10-20) + Math.atan(offset * Math.PI * 10-2) ) * 5,
+        0
+
+        )
+    }
   })};
 
 
