@@ -12,26 +12,7 @@ import CanvasLoader from './Loader';
 
 /** loading of the objects */
 const Dumbbell = ({ ...props }) => {
-  const scroll = useScroll()
-  /*const dumbbell = useGLTF('./3Dmodels/dumbbells/scene.gltf')*/
-
-  useFrame((state) => {
-   
-    // The offset is between 0 and 1, you can apply it to your models any way you like
-    const offset = 1 - scroll.offset
-    
-    state.camera.position.set(/*Math.sin(offset) * -10*/20, 
-      (Math.atan(offset * Math.PI * 10-30) + Math.atan(offset * Math.PI * 10-25) + Math.atan(offset * Math.PI * 10-20) + Math.atan(offset * Math.PI * 10-2) ) * 5,
-       0/*Math.cos((offset * Math.PI) / 3) * -10*/)
-    
-
-    state.camera.lookAt(0,(Math.atan(offset * Math.PI * 10-30) + Math.atan(offset * Math.PI * 10-25) + Math.atan(offset * Math.PI * 10-20) + Math.atan(offset * Math.PI * 10-2) ) * 5,0)
-       
-
-
-
-    console.log(state.camera.position)
-  })
+  
 
   return (
     <mesh>
@@ -84,48 +65,20 @@ function RotatingTorus({...props}) {
 
 /** handling of the camera movements */
 
-const CameraControls = () => {
-  const scroll = useScroll()
 
+const CameraAnimation = ({ section }) => {
+  const targetPosition = useRef({ x: 0, y: 0 , z: 0 });
+  
   useFrame((state) => {
-   
-    // The offset is between 0 and 1, you can apply it to your models any way you like
-    const offset = 1 - scroll.offset;
-    const altitude=(Math.atan(offset * Math.PI * 10-30) + Math.atan(offset * Math.PI * 10-25) + Math.atan(offset * Math.PI * 10-20) + Math.atan(offset * Math.PI * 10-2) ) * 5;
-    const factor = 10.3 ;
-
     
-    state.camera.position.set(/*Math.sin(offset) * -10*/20, 
-      altitude,
-       0/*Math.cos((offset * Math.PI) / 3) * -10*/)
+    const step = 0.1;
+    targetPosition.current.y = -10 * section;
+    state.camera.position.lerp(targetPosition.current, step);
     
+  });
 
-
-       
-
-      
-    if (altitude<-9 && altitude >-20 )  {  
-    console.log("altitude :" + altitude )
-    state.camera.lookAt(
-      Math.cos(factor*(offset-0.18))*10,
-      altitude,      
-      Math.sin(factor*(offset-0.18))*10
-
-      )
-
-    }
-
-    else {
-      console.log("vertical" )
-
-      state.camera.lookAt(
-        Math.cos(factor*(-9-0.18))*10,
-        altitude,
-        Math.sin(factor*(-9-0.18))*10
-
-        )
-    }
-  })};
+  return null;
+};
 
 
 
@@ -133,23 +86,35 @@ const CameraControls = () => {
 /**************************************** */
 
 const BackgroundScene = () => {
-
-
-
-  return (
-    <div className='canvas-container'   > 
-      
-      <Canvas camera={{ position: [0, 0, 10] }} onWheel={(e) => 
-      {console.log('wheel spins')
-        }
-      
+  const [section, setSection] = useState(0);
+  
+  
+  
+  const handleWheel = (e) => {
+    const { deltaY } = e;
+    
+    if (deltaY >0 && section <= 5) {
+      setSection((section) => section + 1);
+    } else if (deltaY <0 && section > 0) {
+      setSection((section) => section - 1);
     }
 
     
-    
+    console.log(section)
+  };
+
+
+
+  
+  return (
+    <div className='canvas-container'   > 
+      
+      <Canvas onWheel={handleWheel}
+      
     gl={{preserveDrawingBuffer: true}}
     >
-      
+      <CameraAnimation section={section} />
+      <gridHelper/>
       <pointLight intensity={100} 
       position={ [5,10,-20] }/>
 
@@ -157,17 +122,14 @@ const BackgroundScene = () => {
       position={ [5,10,20] }/>
       <OrbitControls enableZoom={false} />
        <Suspense fallback={<CanvasLoader />}>
-        <ScrollControls horizontal pages={3} >
-
-            <CameraControls/>
             
-            <RotatingTorus position={[0, 27, 0]}/>
-            <RotatingTorus position={[0, 15, 0]}/>
             <RotatingTorus position={[0, 0, 0]}/>
-            <RotatingTorus position={[0, -14, 0]}/>
-            <RotatingTorus position={[0, -28, 0]}/>
+            <RotatingTorus position={[0, -10, 0]}/>
+            <RotatingTorus position={[0, -20, 0]}/>
+            <RotatingTorus position={[0, -30, 0]}/>
+            <RotatingTorus position={[0, -40, 0]}/>
 
-          </ScrollControls>
+
         </Suspense>
         
         <hemisphereLight intensity={1}
@@ -175,14 +137,11 @@ const BackgroundScene = () => {
 
 
         <Preload all />
+        
     </Canvas>
    
     </div>
-
-
-
       
-    
   )
 }
 
