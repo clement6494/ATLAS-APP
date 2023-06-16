@@ -75,6 +75,7 @@ const CameraAnimation = ({ section }) => {
     targetPosition.current.y = -10 * section;
     
     state.camera.position.lerp(targetPosition.current, step);
+    state.camera.lookAt(1000,-30,0);
     
   });
   
@@ -103,11 +104,11 @@ const BackgroundScene = () => {
     const end = 5;
     if (deltaY >0 && section <= end) {
       setSection((section) => section + 1);
-      setIsHandlingWheel(true);
+      setIsHandlingWheel(true);              // wait to change section on each different srcolls
     setTimeout(() => {
       setIsHandlingWheel(false);
     }, 200);
-    } else if (deltaY <0 && section > 0) {
+    } else if (deltaY <0 && section > 0) {                 //go to next section
         setSection((section) => section - 1);
         setIsHandlingWheel(true);
     setTimeout(() => {
@@ -115,10 +116,10 @@ const BackgroundScene = () => {
     }, 200);
       
     } else if (section > end) {
-      setSection((section) => section + 1);
+      setSection((section) => section + 1);  // camera shake if end reached
       setTimeout(() => {
         setSection((section) => section - 1);
-      }, 50);
+      }, 20);
 
     }
     
@@ -137,7 +138,8 @@ const BackgroundScene = () => {
       <Canvas onWheel={handleWheel}
       
     gl={{preserveDrawingBuffer: true}}
-    >
+    > 
+      <perspectiveCamera   target={[100, -30, 0]}  />
       <CameraAnimation section={section} />
       <gridHelper/>
       <pointLight intensity={100} 
@@ -153,6 +155,8 @@ const BackgroundScene = () => {
             <RotatingTorus position={[10, -20, 0]}/>
             <RotatingTorus position={[10, -30, 0]}/>
             <RotatingTorus position={[10, -40, 0]}/>
+            <RotatingTorus position={[10, -50, 0]}/>
+            <RotatingTorus position={[10, -60, 0]}/>
             <RotatingTorus position={[0, 10, 0]}/>
 
         </Suspense>
