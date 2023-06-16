@@ -73,10 +73,11 @@ const CameraAnimation = ({ section }) => {
     
     const step = 0.1;
     targetPosition.current.y = -10 * section;
+    
     state.camera.position.lerp(targetPosition.current, step);
     
   });
-
+  
   return null;
 };
 
@@ -87,20 +88,44 @@ const CameraAnimation = ({ section }) => {
 
 const BackgroundScene = () => {
   const [section, setSection] = useState(0);
-  
+  const [isHandlingWheel, setIsHandlingWheel] = useState(false);
   
   
   const handleWheel = (e) => {
-    const { deltaY } = e;
-    
-    if (deltaY >0 && section <= 5) {
-      setSection((section) => section + 1);
-    } else if (deltaY <0 && section > 0) {
-      setSection((section) => section - 1);
+    if (isHandlingWheel) {
+      return; // Exit the function if it is already being handled
     }
 
+    setIsHandlingWheel(false);
     
-    console.log(section)
+    
+    const { deltaY } = e;
+    const end = 5;
+    if (deltaY >0 && section <= end) {
+      setSection((section) => section + 1);
+      setIsHandlingWheel(true);
+    setTimeout(() => {
+      setIsHandlingWheel(false);
+    }, 200);
+    } else if (deltaY <0 && section > 0) {
+        setSection((section) => section - 1);
+        setIsHandlingWheel(true);
+    setTimeout(() => {
+      setIsHandlingWheel(false);
+    }, 200);
+      
+    } else if (section > end) {
+      setSection((section) => section + 1);
+      setTimeout(() => {
+        setSection((section) => section - 1);
+      }, 50);
+
+    }
+    
+    
+
+    
+    console.log(deltaY)
   };
 
 
@@ -123,12 +148,12 @@ const BackgroundScene = () => {
       <OrbitControls enableZoom={false} />
        <Suspense fallback={<CanvasLoader />}>
             
-            <RotatingTorus position={[0, 0, 0]}/>
-            <RotatingTorus position={[0, -10, 0]}/>
-            <RotatingTorus position={[0, -20, 0]}/>
-            <RotatingTorus position={[0, -30, 0]}/>
-            <RotatingTorus position={[0, -40, 0]}/>
-
+            <RotatingTorus position={[10, 0, 0]}/>
+            <RotatingTorus position={[10, -10, 0]}/>
+            <RotatingTorus position={[10, -20, 0]}/>
+            <RotatingTorus position={[10, -30, 0]}/>
+            <RotatingTorus position={[10, -40, 0]}/>
+            <RotatingTorus position={[0, 10, 0]}/>
 
         </Suspense>
         
