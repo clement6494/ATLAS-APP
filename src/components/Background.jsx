@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useState, useEffect } from 'react';
+import React, { Suspense, useRef, useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 
 import {styles} from './styles';
@@ -35,11 +35,28 @@ return (
 )
 }
 
-function RotatingTorus({...props}) {
+const Section = ({text, ...props}) => {
+  const myMesh= useRef();
+ return(
+  <mesh ref={myMesh}  {...props}>
+    <Billboard
+
+      follow
+      position={[10,-8,0]}
+      lockZ={false}
+      >
+      <Text fontSize={1}> {text} </Text>
+    </Billboard>
+  </mesh>
+ )
+
+}
+ 
+function RotatingTorus({text, ...props}) {
 
   const myMesh= useRef();
   
-
+  
 
   useFrame(({clock}) => {
     const a= clock.getElapsedTime()
@@ -53,13 +70,98 @@ function RotatingTorus({...props}) {
     <mesh ref={myMesh}  {...props}>
     <torusGeometry args={ [ 2 , 0.5, 25, 70] }  />
     <meshNormalMaterial color='red'  />
-    <Text>  section</Text>
+    <Text 
+    fontSize= {0.5}
+    > {text}  </Text>
 
   </mesh>
   )
 
 
 }
+
+const LeftButton = ( {...props}) => {
+  
+  const myMesh= useRef();
+  
+  
+  return(
+    <mesh  ref={myMesh} {...props}
+    onClick={
+      console.log('go left')
+    }
+    
+    >
+      <boxGeometry args={[0.5,0.5,0.5]} />
+      <meshNormalMaterial color='red' />
+    </mesh>
+
+  )
+}
+
+const RightButton = ( {...props}) => {
+  const myMesh= useRef()
+  
+    
+  return(
+    <mesh   ref={myMesh}
+    onPointerOver={
+      console.log('fucked up')
+    }
+    {...props}>
+      <boxGeometry args={[0.5,0.5,0.5]} />
+      <meshNormalMaterial color='red' />
+    </mesh>
+    )
+}
+
+
+
+
+
+const Programs = () => {
+
+
+  return (
+
+    <group>
+      <group>
+        <LeftButton position={[10,-30, -4]} ></LeftButton>
+        <RightButton position={[10,-30, 4]}></RightButton>
+        
+      </group>
+      <group>
+        <fog attach="fog" args={['#202025', 0, 80]} />
+        <Cloud count={2} radius={20} />
+      </group>
+    </group>
+  )
+
+}
+
+
+const Cloud = ({ count = 1, radius = 10, ...props }) => {
+  const group = useRef()
+  const theta = useMemo(() => Math.PI * 2 / count, [count])
+  useFrame((state) => {
+    const a = state.clock.getElapsedTime()
+    group.current.rotation.y = Math.cos(a / 2) * Math.PI
+  })
+  return (
+    <group ref={group} {...props}>
+      {Array(count).fill().map((_, i) => (
+        <mesh key={i} position={[Math.sin(theta * i) * radius, 0, Math.cos(theta * i) * radius]}>
+          <sphereGeometry args={[1, 32, 32]} />
+          <meshStandardMaterial color="white" transparent opacity={0.9} />
+        </mesh>
+      ))}
+    </group>
+  )
+}
+/* ********************************************** */
+//*******************   SCENE    ******************* */
+/****************************************
+ * 
 /************************************** */
 
 /** handling of the camera movements */
@@ -122,7 +224,7 @@ function Scene({ margin = 0.5 }) {
 /**************************************** */
 
 const BackgroundScene = () => {
-  const [section, setSection] = useState(1);
+  const [section, setSection] = useState(0);
   const [isHandlingWheel, setIsHandlingWheel] = useState(false);
   
   
@@ -177,29 +279,18 @@ const BackgroundScene = () => {
       <perspectiveCamera   target={[100, -30, 0]}  />
       <CameraAnimation section={section} />
       <gridHelper/>
-      <pointLight intensity={100} 
-      position={ [5,10,-20] }/>
 
-      <pointLight intensity={100} 
-      position={ [5,10,20] }/>
       <OrbitControls enableZoom={false} />
        <Suspense fallback={<CanvasLoader />}>
             
-            <RotatingTorus position={[10, 0, 0]}/>
-            <RotatingTorus position={[10, -10, 0]}/>
-            <RotatingTorus position={[10, -20, 0]}/>
-            <RotatingTorus position={[10, -30, 0]}/>
-            <Section2 position={[10, -40, 0]}/>
-
+            <Section position={[10, 0, 0]} text={'who we are'}/>
+            <Section position={[10, -10, 0]} text={'services'}/>
+            <Section position={[10, -20, 0]} text={'section 3'}/>
+            
+            <Section4 position={[10, -40, 0]}/>
+            
             <RotatingTorus position={[0, 10, 0]}/>
-            <Billboard
 
-              follow
-              position={[10,-8,0]}
-              lockZ={false}
-            >
-              <Text fontSize={1}>I'm a billboard</Text>
-            </Billboard>
         </Suspense>
         
         <hemisphereLight intensity={1}
