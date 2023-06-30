@@ -33,28 +33,28 @@ const Links = ({ ...props }) => {
 
 <>
   <Svg 
-    onClick={handleClick
-      
-    }
-    fillMaterial={{
-      wireframe: false
-    }}
-    position={[
-      20,
-      -40,
-      0
-    ]}
-    rotation={[
-      0,
-      -2,
-      0
-    ]}
+    onClick={handleClick }
+    fillMaterial={{wireframe: false}}
+    position={[20,-40,0]}
+    rotation={[0,-2,0]}
     scale={0.01 }
     src="https://threejs.org/examples/models/svg/tiger.svg"
     strokeMaterial={{
       wireframe: false
-    }}
-  />
+    }}/>
+
+<Svg 
+    onClick={handleClick }
+    fillMaterial={{wireframe: true}}
+    position={[20,-40,0]}
+    rotation={[0,-2,0]}
+    scale={4 }
+    src="./svg/twitter.svg"
+    strokeMaterial={{
+      wireframe: true
+    }}/>
+
+
   <gridHelper
     args={[
       160,
