@@ -12,7 +12,7 @@ import CanvasLoader from './Loader';
 /** loading of the objects */
 const Dumbbell = ({ ...props }) => {
   
-
+  const Dumbbell = useGLTF('./3Dmodels/Dumbbell/scene.gltf')
   return (
     <mesh>
       <primitive  object={Dumbbell.scene} {...props} />
@@ -80,64 +80,11 @@ function RotatingTorus({text, ...props}) {
 
 }
 
-const LeftButton = ( {...props}) => {
-  
-  const myMesh= useRef();
-  
-  
-  return(
-    <mesh  ref={myMesh} {...props}
-    onClick={
-      console.log('go left')
-    }
-    
-    >
-      <boxGeometry args={[0.5,0.5,0.5]} />
-      <meshNormalMaterial color='red' />
-    </mesh>
-
-  )
-}
-
-const RightButton = ( {...props}) => {
-  const myMesh= useRef()
-  
-    
-  return(
-    <mesh   ref={myMesh}
-    onPointerOver={
-      console.log('fucked up')
-    }
-    {...props}>
-      <boxGeometry args={[0.5,0.5,0.5]} />
-      <meshNormalMaterial color='red' />
-    </mesh>
-    )
-}
 
 
 
 
 
-const Programs = () => {
-
-
-  return (
-
-    <group>
-      <group>
-        <LeftButton position={[10,-30, -4]} ></LeftButton>
-        <RightButton position={[10,-30, 4]}></RightButton>
-        
-      </group>
-      <group>
-        <fog attach="fog" args={['#202025', 0, 80]} />
-        <Cloud count={2} radius={20} />
-      </group>
-    </group>
-  )
-
-}
 
 
 const Cloud = ({ count = 1, radius = 10, ...props }) => {
@@ -168,15 +115,26 @@ const Cloud = ({ count = 1, radius = 10, ...props }) => {
 
 
 const CameraAnimation = ({ section }) => {
-  const targetPosition = useRef({ x: 5, y: 0 , z: 0 });
-  
+  const targetPosition = useRef({ x: 10, y: 0 , z: 0 });
+  const targets = [ 
+    {x: 5,y:0,z:0},
+    {x: 45,y:0,z:0},
+    {x: 5,y:-20,z:0},
+    {x: 5,y:-30,z:0},
+    {x: 5,y:-40,z:0},
+    {x: 5,y:-50,z:0},
+   ];
+
+   useEffect(() => {
+    targetPosition.current = { ...targets[section] };
+  }, [section]);
+
   useFrame((state) => {
     
     const step = 0.1;
-    targetPosition.current.y = -10 * section;
     
     state.camera.position.lerp(targetPosition.current, step);
-    state.camera.lookAt(1000,-30,0);
+    
     
   });
   
@@ -219,6 +177,20 @@ function Scene({ margin = 0.5 }) {
   )
 }
 
+const Content = () => {
+
+  const { width, height } = useThree((state) => state.viewport)
+  const margin = 0.5 ;
+
+  return (
+  <Center top left position={[width / 2 - margin, -height / 2 + margin, 0]}>
+  <Text3D letterSpacing={-0.06} size={0.5} font="/Inter_Bold.json">
+    bottom right
+    <meshStandardMaterial color="white" />
+  </Text3D>
+</Center>
+)
+}
 
 
 /**************************************** */
@@ -265,6 +237,7 @@ const BackgroundScene = () => {
     console.log(section)
   };
 
+  
 
 
   
@@ -283,14 +256,14 @@ const BackgroundScene = () => {
       <OrbitControls enableZoom={false} />
        <Suspense fallback={<CanvasLoader />}>
             
-            <Section position={[10, 0, 0]} text={'who we are'}/>
-            <Section position={[10, -10, 0]} text={'services'}/>
+            <Section position={[-20, 10, 0]} text={'who we are'}/>
+            <Section position={[20, 10, 0]} text={'services'}/>
             <Section position={[10, -20, 0]} text={'section 3'}/>
             
             <Section4 position={[10, -40, 0]}/>
             
-            <RotatingTorus position={[0, 10, 0]}/>
-
+            <Content/>
+            
         </Suspense>
         
         <hemisphereLight intensity={1}

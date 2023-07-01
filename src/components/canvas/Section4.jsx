@@ -46,7 +46,7 @@ const Links = ({ ...props }) => {
 <Svg 
     onClick={handleClick }
     fillMaterial={{wireframe: true}}
-    position={[20,-40,0]}
+    position={[20,-37,0]}
     rotation={[0,-2,0]}
     scale={4 }
     src="./svg/twitter.svg"
