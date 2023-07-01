@@ -1,29 +1,28 @@
-import React from 'react';
-import { Text3D,Center } from '@react-three/drei';
+import React, { Suspense, useRef, useState, useEffect, useMemo } from 'react';
+
+
+import { OrbitControls, Preload, ScrollControls, useGLTF, useScroll,Text, useTexture, Center, Decal, Text3D, Billboard,Svg } from '@react-three/drei';
+
+
+
 
 const Section2 = ({...props}) => {
-  return (
-    
-<Center rotation={[0, -1, 0]}  {...props}>
-        <Text3D
-          curveSegments={32}
-          bevelEnabled
-          bevelSize={0.04}
-          bevelThickness={0.1}
-          height={0.5}
-          lineHeight={0.5}
-          letterSpacing={-0.06}
-          size={1}
-          
-          font="/Inter_Bold.json"
-          >
-          {`Contact\nUs!`}
-          <meshNormalMaterial />
-        </Text3D>
+  const myMesh= useRef();
+ return(
+  <mesh ref={myMesh}  {...props}>
+    <Billboard
 
+      follow
+      position={[10,-8,0]}
+      lockZ={false}
+      >
+        <Center>
+      <Text fontSize={1}> {Services} </Text>
+      
       </Center>
-    
-  );
-};
+    </Billboard>
+  </mesh>
+ )
+}
 
 export default Section2;
