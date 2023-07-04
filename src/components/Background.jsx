@@ -134,6 +134,7 @@ const CameraAnimation = ({ section }) => {
     const step = 0.1;
     
     state.camera.position.lerp(targetPosition.current, step);
+    state.camera.lookAt(1000,0,0);
     
     
   });
@@ -256,9 +257,11 @@ const BackgroundScene = () => {
       <OrbitControls enableZoom={false} />
        <Suspense fallback={<CanvasLoader />}>
             
-            <Section position={[-20, 10, 0]} text={'who we are'}/>
-            <Section position={[20, 10, 0]} text={'services'}/>
-            <Section position={[10, -20, 0]} text={'section 3'}/>
+            <Section position={[20, 10, 0]} text={'who we are'}/>
+            <Section position={[60, 10, 0]} text={'services'}/>
+
+            <Section3 position={[60, -20,0]} />
+            <Section position={[10, -20, 0]} text={'section 4'}/>
             
             <Section4 position={[10, -40, 0]}/>
             
