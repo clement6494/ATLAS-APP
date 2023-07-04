@@ -39,7 +39,7 @@ const Screen = ({src}) => {
 
 const VideoMaterial = ({ src, setVideo }) =>{
 
-  const texture = useVideoTexture(src)
+  const texture = useVideoTexture('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4')
   texture.wrapS = useThree.RepeatWrapping
   texture.wrapT = useThree.RepeatWrapping
   texture.repeat.x = -1
@@ -64,7 +64,7 @@ const Section3 = ({...props}) => {
   return(
    <mesh ref={myMesh}  {...props}>
 
-      <group  position={[10, 0,-3.5]} rotation-y={-3.14/2} >
+      <group  position={[1, 0,-3.5]} rotation-y={-3.14/2} >
         
         <Center>
         <Screen src={url} />
@@ -74,21 +74,21 @@ const Section3 = ({...props}) => {
 
       </group>
 
-      <group position={[10, 0,3.5]} rotation-y={-3.14/2}  >
+      <group position={[1, 0,3.5]} rotation-y={-3.14/2}  >
       <Center>
         <Screen src={url} />
         <Text fontSize={1}> {`Remise\nen Forme`} </Text>
 
         </Center>
       </group>
-      <group position={[10, 0,10.5]} rotation-y={-3.14/2}  >
+      <group position={[1, 0,10.5]} rotation-y={-3.14/2}  >
       <Center>
         <Screen src={url} />
         <Text fontSize={1}> Force </Text>
 
         </Center>
       </group>
-      <group position={[10, 0,-10.5]} rotation-y={-3.14/2}  >
+      <group position={[1, 0,-10.5]} rotation-y={-3.14/2}  >
       <Center>
         <Screen src={url} />
         <Text fontSize={1}> {`Street\nen Lifting`} </Text>
