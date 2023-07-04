@@ -119,7 +119,7 @@ const CameraAnimation = ({ section }) => {
   const targets = [ 
     {x: 5,y:0,z:0},
     {x: 45,y:0,z:0},
-    {x: 5,y:-20,z:0},
+    {x: 45,y:-20,z:0},
     {x: 5,y:-30,z:0},
     {x: 5,y:-40,z:0},
     {x: 5,y:-50,z:0},
@@ -184,7 +184,7 @@ const Content = () => {
   const margin = 0.5 ;
 
   return (
-  <Center top left position={[width / 2 - margin, -height / 2 + margin, 0]}>
+  <Center top left position={[width / 2 - margin, -height / 2 + margin, 0]} rotation-y={[-3.14/2]}>
   <Text3D letterSpacing={-0.06} size={0.5} font="/Inter_Bold.json">
     bottom right
     <meshStandardMaterial color="white" />
