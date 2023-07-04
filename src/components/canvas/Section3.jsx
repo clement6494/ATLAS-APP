@@ -6,10 +6,19 @@ import { OrbitControls, Preload, ScrollControls, useGLTF, useScroll,Text, useTex
 
 
 
-const Section3 = () => {
-  return (
-    <div>Earth</div>
+const Section3 = ({...props}) => {
+  const myMesh= useRef();
+  return(
+   <mesh ref={myMesh}  {...props}>
+     <Billboard>
+ 
+      <group>
+
+        
+      </group>
+     </Billboard>
+   </mesh>
   )
-}
+ }
 
 export default Section3
