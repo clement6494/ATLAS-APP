@@ -62,7 +62,7 @@ floatIntensity={6} // Up/down float intensity, works like a multiplier with floa
     }}/>
 </Float>
 <Svg 
-    onClick={window.open('https://www.instagram.com/halvor.j')}
+    onClick={handleClick}
     fillMaterial={{wireframe: true}}
     position={[20,-37,0]}
     rotation-y={-Math.PI / 2}
