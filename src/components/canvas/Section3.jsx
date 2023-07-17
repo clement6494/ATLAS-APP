@@ -2,7 +2,7 @@ import React, { Suspense, useRef, useState, useEffect, useMemo } from 'react';
 
 import { Canvas, useFrame, useThree, extend } from '@react-three/fiber';
 
-import { Plane, useVideoTexture, OrbitControls, Preload, ScrollControls, useGLTF, useScroll,Text, useTexture, Center, Decal, Text3D, Billboard,Svg } from '@react-three/drei';
+import { Plane,  SpotLight, useDepthBuffer , useVideoTexture, OrbitControls, Preload, ScrollControls, useGLTF, useScroll,Text, useTexture, Center, Decal, Text3D, Billboard,Svg } from '@react-three/drei';
 
 
 
@@ -39,22 +39,37 @@ const Screen = ({src}) => {
 
 const VideoMaterial = ({ src, setVideo }) =>{
 
-  const texture = useVideoTexture('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4')
+  const texture = useVideoTexture(src)
   texture.wrapS = useThree.RepeatWrapping
   texture.wrapT = useThree.RepeatWrapping
   texture.repeat.x = -1
   texture.offset.x = 1
+  texture.loop = 1
 
-  setVideo?.(texture.image)
 
-  return <meshStandardMaterial side={useThree.DoubleSide} map={texture} toneMapped={false} transparent opacity={0.9} />
+  useEffect(() => {
+    // Move setVideo inside the useEffect hook
+    setVideo?.(texture.image);
+  }, [texture.image, setVideo]);
+
+  return <meshBasicMaterial 
+          side={useThree.DoubleSide} 
+          map={texture} 
+          toneMapped={false} 
+          
+
+          />
 }
 
 
+
 const Section3 = ({...props}) => {
+  const depthBuffer = useDepthBuffer({ frames: 1 })
   const myMesh= useRef();
   const [stream, setStream] = useState(new MediaStream())
-  
+
+
+
   const { url } =  {
       value: films['Sintel'],
       options: films
@@ -64,37 +79,97 @@ const Section3 = ({...props}) => {
   return(
    <mesh ref={myMesh}  {...props}>
 
-      <group  position={[1, 0,-3.5]} rotation-y={-3.14/2} >
-        
-        <Center>
-        <Screen src={url} />
-        <Text fontSize={1}> Performance </Text>
 
-        </Center>
+      <group 
+      position={[0, 0, -3.5]} 
+      rotation-y={-Math.PI / 2}
+      onPointerOver={(e) => {e.object.position.z=2}}
+      onPointerOut={(e) => {e.object.position.z=0}}       
 
-      </group>
+      >       
 
-      <group position={[1, 0,3.5]} rotation-y={-3.14/2}  >
-      <Center>
-        <Screen src={url} />
-        <Text fontSize={1}> {`Remise\nen Forme`} </Text>
+              <Screen 
+              src={'./videos/batch_process_190.mp4'}
+              
+              
+              />
 
-        </Center>
-      </group>
-      <group position={[1, 0,10.5]} rotation-y={-3.14/2}  >
-      <Center>
-        <Screen src={url} />
-        <Text fontSize={1}> Force </Text>
+              <Text
+                
+                fontSize={1}
+                color="white"
+                position={[0, 1.5, 5]}
+                anchorX="center"
+                anchorY="middle"
+              >
+                Performance
+              </Text>
+            </group>
 
-        </Center>
-      </group>
-      <group position={[1, 0,-10.5]} rotation-y={-3.14/2}  >
-      <Center>
-        <Screen src={url} />
-        <Text fontSize={1}> {`Street\nen Lifting`} </Text>
+            <group 
+            position={[0, 0,3.5]} 
+            rotation-y={-Math.PI / 2}
+            
+            onPointerOver={(e) => {e.object.position.z=2}}
+            onPointerOut={(e) => {e.object.position.z=0}}    
+            
+            >
+              <Screen src={'./videos/PXL_20230515_134040482.mp4'} />
 
-        </Center>
-      </group>
+
+              <Text
+                fontSize={1}
+                color="white"
+                position={[0, 1.5, 5]}
+                anchorX="center"
+                anchorY="middle"
+              >
+                {`Remise\nen Forme`}
+              </Text>
+
+            </group>
+
+      <group position={[0, 0,10.5]} rotation-y={-Math.PI / 2}
+      onPointerOver={(e) => {e.object.position.z=2
+        e.object.position.x=-2
+      }}
+      onPointerOut={(e) => {e.object.position.z=0
+        e.object.position.x=0
+      }}   
+      
+      >
+              <Screen src={'./videos/PXL_20230610_150928399.mp4'} />
+              <Text
+                fontSize={1}
+                color="white"
+                position={[0, 1.5, 5]}
+                anchorX="center"
+                anchorY="middle"
+              >
+                Force
+              </Text>
+            </group>
+
+            <group position={[0, 0,-10.5]} rotation-y={-Math.PI / 2}
+            onPointerOver={(e) => {e.object.position.z=2
+              e.object.position.x=2
+            }}
+            onPointerOut={(e) => {e.object.position.z=0
+              e.object.position.x=0
+            }}   
+            >
+              <Screen src={'./videos/batch_process_164.mp4'} />
+              <Text
+                fontSize={1}
+                color="white"
+                position={[0, 1.5, 5]}
+                anchorX="center"
+                anchorY="middle"
+              >
+                {`Street\nWorkout`}
+              </Text>
+            </group>           
+
    </mesh>
   )
  }
