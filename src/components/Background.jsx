@@ -263,7 +263,7 @@ const BackgroundScene = () => {
             <Section3 position={[60, -25,0]} />
             <Section position={[10, -20, 0]} text={'section 4'}/>
             
-            <Section4 position={[10, -40, 0]}/>
+            <Section4 position={[20, -40, 0]}/>
             
             <Content/>
             
