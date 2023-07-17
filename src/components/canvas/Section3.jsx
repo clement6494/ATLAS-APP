@@ -65,9 +65,17 @@ const VideoMaterial = ({ src, setVideo }) =>{
 
 const Section3 = ({...props}) => {
   const depthBuffer = useDepthBuffer({ frames: 1 })
-  const myMesh= useRef();
+  
   const [stream, setStream] = useState(new MediaStream())
+const title1 = useRef();
+const title2 = useRef();
+const title3 = useRef();
+const title4 = useRef();
 
+const text1 = useRef();
+const text2 = useRef();
+const text3 = useRef();
+const text4 = useRef();
 
 
   const { url } =  {
@@ -77,30 +85,37 @@ const Section3 = ({...props}) => {
  
   
   return(
-   <mesh ref={myMesh}  {...props}>
+   <mesh   {...props}>
 
 
       <group 
       position={[0, 0, -3.5]} 
       rotation-y={-Math.PI / 2}
-      onPointerOver={(e) => {e.object.position.z=2}}
-      onPointerOut={(e) => {e.object.position.z=0}}       
+      onPointerOver={(e) => {
+        e.object.position.z=2
+        title1.current.position.z=6.5
+        title1.current.position.y=9
+
+      }}
+      onPointerOut={(e) => {e.object.position.z=0
+        title1.current.position.z=5
+        title1.current.position.y=1.5
+
+      }}       
 
       >       
 
               <Screen 
               src={'./videos/batch_process_190.mp4'}
-              
-              
               />
 
-              <Text
+              <Text ref={title1}
                 
-                fontSize={1}
+                fontSize={0.8}
                 color="white"
-                position={[0, 1.5, 5]}
+                
                 anchorX="center"
-                anchorY="middle"
+                anchorY="bottom-baseline"
               >
                 Performance
               </Text>
@@ -110,19 +125,24 @@ const Section3 = ({...props}) => {
             position={[0, 0,3.5]} 
             rotation-y={-Math.PI / 2}
             
-            onPointerOver={(e) => {e.object.position.z=2}}
+            onPointerOver={(e) => {
+              e.object.position.z=2;
+              
+            
+            
+            }}
             onPointerOut={(e) => {e.object.position.z=0}}    
             
             >
               <Screen src={'./videos/PXL_20230515_134040482.mp4'} />
 
 
-              <Text
+              <Text ref={title2}
                 fontSize={1}
                 color="white"
                 position={[0, 1.5, 5]}
                 anchorX="center"
-                anchorY="middle"
+                anchorZ="middle"
               >
                 {`Remise\nen Forme`}
               </Text>
@@ -139,7 +159,7 @@ const Section3 = ({...props}) => {
       
       >
               <Screen src={'./videos/PXL_20230610_150928399.mp4'} />
-              <Text
+              <Text ref={title3}
                 fontSize={1}
                 color="white"
                 position={[0, 1.5, 5]}
@@ -153,13 +173,14 @@ const Section3 = ({...props}) => {
             <group position={[0, 0,-10.5]} rotation-y={-Math.PI / 2}
             onPointerOver={(e) => {e.object.position.z=2
               e.object.position.x=2
+              
             }}
             onPointerOut={(e) => {e.object.position.z=0
               e.object.position.x=0
             }}   
             >
               <Screen src={'./videos/batch_process_164.mp4'} />
-              <Text
+              <Text ref={title4}
                 fontSize={1}
                 color="white"
                 position={[0, 1.5, 5]}

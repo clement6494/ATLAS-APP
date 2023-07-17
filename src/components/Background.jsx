@@ -257,7 +257,7 @@ const BackgroundScene = () => {
       <OrbitControls enableZoom={false} />
        <Suspense fallback={<CanvasLoader />}>
             <fog attach="fog" args={['#000000', 30, 50]}/>
-            <Section position={[20, 10, 0]} text={'who we are'}/>
+            <Section position={[20, 10, 0]} text={'Tu recherches '}/>
             <Section position={[60, 10, 0]} text={'services'}/>
 
             <Section3 position={[60, -25,0]} />
