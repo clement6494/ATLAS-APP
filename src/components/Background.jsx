@@ -10,13 +10,15 @@ import { OrbitControls, Preload, ScrollControls, useGLTF, useScroll,Text, useTex
 import CanvasLoader from './Loader';
 
 /** loading of the objects */
-const Dumbbell = ({ ...props }) => {
+const Gym = ({ ...props }) => {
   
-  const Dumbbell = useGLTF('./3Dmodels/Dumbbell/scene.gltf')
+  const Gym = useGLTF('./3Dmodels/tf-ds-gym/scene.gltf')
   return (
     <mesh>
-      <primitive  object={Dumbbell.scene} {...props} />
-
+      <primitive  object={Gym.scene} {...props} />
+      <pointLight intensity={2} 
+      position={ [5,-50,-20] }  />
+        <pointLight position={[10,30,10]} intensity={2}    />
     </mesh>
   )
 }
@@ -30,6 +32,7 @@ return (
   <mesh  >
 
       <primitive  object={Kettlebell.scene} {...props} />
+      <meshNormalMaterial color='red'  />
 
   </mesh>
 )
@@ -250,12 +253,14 @@ const BackgroundScene = () => {
     gl={{preserveDrawingBuffer: true}}
     > 
 
-      <perspectiveCamera   target={[100, -30, 0]}  />
+      <perspectiveCamera />
       <CameraAnimation section={section} />
-      <gridHelper/>
+
+      
 
       <OrbitControls enableZoom={false} />
        <Suspense fallback={<CanvasLoader />}>
+            <Gym    position={[40, 0, 0]} />
             <fog attach="fog" args={['#000000', 30, 50]}/>
             <Section position={[20, 10, 0]} text={'Tu recherches '}/>
             <Section position={[60, 10, 0]} text={'services'}/>

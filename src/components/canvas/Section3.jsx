@@ -38,10 +38,10 @@ const Screen = ({src}) => {
 }
 
 const VideoMaterial = ({ src, setVideo }) =>{
-
-  const texture = useVideoTexture(src)
-  texture.wrapS = useThree.RepeatWrapping
-  texture.wrapT = useThree.RepeatWrapping
+  
+  const texture = useVideoTexture(src);
+  texture.wrapS = 1000
+  texture.wrapT = 1000
   texture.repeat.x = -1
   texture.offset.x = 1
   texture.loop = 1
