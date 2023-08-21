@@ -46,9 +46,10 @@ const Section = ({text, ...props}) => {
 
       follow
       position={[10,-8,0]}
-      lockZ={false}
+      lockX={false}
+
       >
-      <Text fontSize={1}> {text} </Text>
+      <Text fontSize={1} color={"white"}> {text} </Text>
     </Billboard>
   </mesh>
  )
@@ -122,7 +123,7 @@ const CameraAnimation = ({ section }) => {
   const targets = [ 
     {x: 0,y:1,z:-7},
     {x: 10,y:1,z:0},
-    {x: 0,y:10,z:0},
+    {x: 0,y:30,z:0},
     {x: 0,y:0,z:30},
     {x: 0,y:0,z:60},
     {x: 0,y:0,z:70},
@@ -137,7 +138,7 @@ const CameraAnimation = ({ section }) => {
     const step = 0.1;
     
     state.camera.position.lerp(targetPosition.current, step);
-    state.camera.lookAt(0,0,0);
+    state.camera.lookAt(0,1,0);
     
     
   });
@@ -258,7 +259,7 @@ const BackgroundScene = () => {
 
       
 
-      <OrbitControls enableZoom={false} />
+      
        <Suspense fallback={<CanvasLoader />}>
              
                     
@@ -267,7 +268,7 @@ const BackgroundScene = () => {
             <Section position={[-9, 10, -2]} text={'Tu recherches '}/>
             <Section position={[-5, 9, 0]} text={'services'}/>
 
-            <Section3 position={[60, -25,0]} />
+            <Section3 position={[0, 15,0]} />
             <Section position={[10, -20, 0]} text={'section 4'}/>
             
             <Section4 position={[0, 0, 50]}/>

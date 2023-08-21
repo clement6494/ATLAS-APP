@@ -2,7 +2,7 @@ import React, { Suspense, useRef, useState, useEffect, useMemo } from 'react';
 
 import { Canvas, useFrame, useThree, extend } from '@react-three/fiber';
 
-import { Plane,  SpotLight, useDepthBuffer , useVideoTexture, OrbitControls, Preload, ScrollControls, useGLTF, useScroll,Text, useTexture, Center, Decal, Text3D, Billboard,Svg } from '@react-three/drei';
+import {  Plane,  SpotLight, useDepthBuffer , useVideoTexture, OrbitControls, Preload, ScrollControls, useGLTF, useScroll,Text, useTexture, Center, Decal, Text3D, Billboard,Svg } from '@react-three/drei';
 
 
 
@@ -87,10 +87,11 @@ const text4 = useRef();
   return(
    <mesh   {...props}>
 
-
+    <Billboard follow >
+      <Center>
       <group 
-      position={[0, 0, -3.5]} 
-      rotation-y={-Math.PI / 2}
+      position-x={-8} 
+      
       onPointerOver={(e) => {
         e.object.position.z=2
         title1.current.position.z=6.5
@@ -122,8 +123,8 @@ const text4 = useRef();
             </group>
 
             <group 
-            position={[0, 0,3.5]} 
-            rotation-y={-Math.PI / 2}
+            position-x={-3} 
+            
             
             onPointerOver={(e) => {
               e.object.position.z=2;
@@ -149,7 +150,7 @@ const text4 = useRef();
 
             </group>
 
-      <group position={[0, 0,10.5]} rotation-y={-Math.PI / 2}
+      <group position-x={3}  
       onPointerOver={(e) => {e.object.position.z=2
         e.object.position.x=-2
       }}
@@ -158,6 +159,7 @@ const text4 = useRef();
       }}   
       
       >
+              
               <Screen src={'./videos/PXL_20230610_150928399.mp4'} />
               <Text ref={title3}
                 fontSize={1}
@@ -168,9 +170,10 @@ const text4 = useRef();
               >
                 Force
               </Text>
+              
             </group>
 
-            <group position={[0, 0,-10.5]} rotation-y={-Math.PI / 2}
+            <group position-x={8} 
             onPointerOver={(e) => {e.object.position.z=2
               e.object.position.x=2
               
@@ -178,19 +181,24 @@ const text4 = useRef();
             onPointerOut={(e) => {e.object.position.z=0
               e.object.position.x=0
             }}   
-            >
-              <Screen src={'./videos/batch_process_164.mp4'} />
+            > 
+              
+              <Screen src={'./videos/batch_process_164.mp4'}  />
               <Text ref={title4}
                 fontSize={1}
                 color="white"
                 position={[0, 1.5, 5]}
                 anchorX="center"
                 anchorY="middle"
+
               >
                 {`Street\nWorkout`}
               </Text>
-            </group>           
 
+              
+            </group> 
+            </Center>          
+      </Billboard>
    </mesh>
   )
  }
