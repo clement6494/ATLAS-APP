@@ -16,9 +16,9 @@ const Gym = ({ ...props }) => {
   return (
     <mesh>
       <primitive  object={Gym.scene} {...props} />
-      <pointLight intensity={2} 
+      <pointLight intensity={0.1} 
       position={ [5,-50,-20] }  />
-        <pointLight position={[10,30,10]} intensity={2}    />
+        <pointLight position={[10,30,10]} intensity={0.5}    />
     </mesh>
   )
 }
@@ -38,19 +38,15 @@ return (
 )
 }
 
-const Section = ({text, ...props}) => {
+const Section = ({text,hero, ...props}) => {
   const myMesh= useRef();
  return(
   <mesh ref={myMesh}  {...props}>
-    <Billboard
-
-      follow
-      position={[10,-8,0]}
-      lockX={false}
-
-      >
-      <Text fontSize={1} color={"white"}> {text} </Text>
-    </Billboard>
+     <Center>
+      <Text position-y={2} fontSize={1} color={"white"}> {text} </Text>
+      <Text fontSize={0.15} color={"white"}> {hero} </Text>
+      </Center>
+    
   </mesh>
  )
 
@@ -242,6 +238,21 @@ const BackgroundScene = () => {
     console.log(section)
   };
 
+  const hero0=`Des programmes adaptés à tes objectifs et capacités
+  \n associés à une routine d’échauffement et d’étirement. 
+  \nMon programme sera fait pour toi.`
+
+
+  const hero1=`
+  \n\n  ·Des programmes d'entraînement personnalisés, allant du renforcement et plans de remise en forme complets à la préparation d'athlète pour des échéances.
+  \n  ·Un suivi mensuel comprenant des programmes personnalisés et adaptés chaque semaine, des retours sur la techniques quotidiens ainsi que des conseils nutritionnels pour l'optimisation de la performance. 
+  \n  ·Des sessions de coaching individuelles pour des conseils et une correction de mouvements en présentiel.
+  \n  ·Des cours en téléconférence sur la morpho-anatomie et la physiologie du corps par rapport à l'entraînement.
+  \n\n·Je travaille avec des clients de tous horizons, qu'il s'agisse d'athlètes, de personnes occupées
+  \n qui cherchent à intégrer l'exercice dans leur emploi du temps chargé, de personnes
+  \n cherchant à perdre du poids ou à se remettre en forme après une blessure.
+  `
+
   
 
 
@@ -265,8 +276,8 @@ const BackgroundScene = () => {
                     
             <Gym    position={[2.5, 0, 0]} />
             <fog attach="fog" args={['#000000', 30, 50]}/>
-            <Section position={[-9, 10, -2]} text={'Tu recherches '}/>
-            <Section position={[-5, 9, 0]} text={'services'}/>
+            <Section position={[0, 2, -2]} rotation-y={Math.PI} text={'Tu recherches '} hero={hero0}/>
+            <Section position={[5, 2, 0]} rotation-y={Math.PI / 2} text={'services'} hero={hero1}/>
 
             <Section3 position={[0, 15,0]} />
             <Section position={[10, -20, 0]} text={'section 4'}/>
