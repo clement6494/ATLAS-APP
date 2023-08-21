@@ -11,14 +11,14 @@ const Atlas = ({ ...props }) => {
   const Atlas = useGLTF('./3Dmodels/atlas/scene.gltf')
   
   return (
-    <mesh position={[14, -46, 0]} rotation={[0, -Math.PI/2, 0]} >
+    <mesh {...props} >
   
-        <primitive  object={Atlas.scene} scale={0.1} position-z={2} rotation-x={ -Math.PI/7}  />
+        <primitive  object={Atlas.scene} scale={0.1} position={[0,-7,5]} rotation-x={-0.5}   />
         <pointLight intensity={2} 
       position={ [5,-50,-20] } ref={pointLightRef} />
         <pointLight position={[10,30,10]} intensity={2}    />
         <Sparkles
-        position-y={7}
+        position-y={0}
         color="white"
         count={100}
         noise={1}
@@ -81,17 +81,17 @@ const Section4 = ({...props}) => {
       
     
       
-      <>
-      <Links/>
+      < >
+      <Links {...props} />
       <Atlas  {...props} />
     
-      <Center rotation-y={ -Math.PI/2} position={[10, -41, 0]}>
+      <Center {...props} position={[0,0,55]}>
         
     
       
         
         
-      <Float>
+      <Float >
           <Text3D
             curveSegments={32}
             bevelEnabled
