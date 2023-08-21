@@ -6,13 +6,13 @@ import {Section1 , Section2, Section3,Section4,Section5} from './canvas';
 /**import { ComputerCanvas } from './canvas' ; */
 
 import { Canvas, useFrame, useThree, extend } from '@react-three/fiber';
-import { OrbitControls, Preload, ScrollControls, useGLTF, useScroll,Text, useTexture, Center, Decal, Text3D, Billboard } from '@react-three/drei';
+import {Svg, OrbitControls, Preload, ScrollControls, useGLTF, useScroll,Text, useTexture, Center, Decal, Text3D, Billboard } from '@react-three/drei';
 import CanvasLoader from './Loader';
 
 /** loading of the objects */
 const Gym = ({ ...props }) => {
   
-  const Gym = useGLTF('./3Dmodels/tf-ds-gym/scene.gltf')
+  const Gym = useGLTF('./3Dmodels/gym_complex/gym_complex.glb')
   return (
     <mesh>
       <primitive  object={Gym.scene} {...props} />
@@ -120,12 +120,12 @@ const Cloud = ({ count = 1, radius = 10, ...props }) => {
 const CameraAnimation = ({ section }) => {
   const targetPosition = useRef({ x: 10, y: 0 , z: 0 });
   const targets = [ 
-    {x: 5,y:0,z:0},
-    {x: 45,y:0,z:0},
-    {x: 45,y:-20,z:0},
-    {x: 5,y:-30,z:0},
-    {x: 5,y:-40,z:0},
-    {x: 5,y:-50,z:0},
+    {x: 0,y:1,z:-7},
+    {x: 10,y:1,z:0},
+    {x: 0,y:10,z:0},
+    {x: 0,y:0,z:30},
+    {x: 0,y:0,z:60},
+    {x: 0,y:0,z:70},
    ];
 
    useEffect(() => {
@@ -137,7 +137,7 @@ const CameraAnimation = ({ section }) => {
     const step = 0.1;
     
     state.camera.position.lerp(targetPosition.current, step);
-    state.camera.lookAt(1000,0,0);
+    state.camera.lookAt(0,0,0);
     
     
   });
@@ -260,15 +260,17 @@ const BackgroundScene = () => {
 
       <OrbitControls enableZoom={false} />
        <Suspense fallback={<CanvasLoader />}>
-            <Gym    position={[40, 0, 0]} />
+             
+                    
+            <Gym    position={[2.5, 0, 0]} />
             <fog attach="fog" args={['#000000', 30, 50]}/>
-            <Section position={[20, 10, 0]} text={'Tu recherches '}/>
-            <Section position={[60, 10, 0]} text={'services'}/>
+            <Section position={[-9, 10, -2]} text={'Tu recherches '}/>
+            <Section position={[-5, 9, 0]} text={'services'}/>
 
             <Section3 position={[60, -25,0]} />
             <Section position={[10, -20, 0]} text={'section 4'}/>
             
-            <Section4 position={[20, -40, 0]}/>
+            <Section4 position={[0, 0, 50]}/>
             
             <Content/>
             

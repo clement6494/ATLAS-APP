@@ -56,7 +56,7 @@ floatIntensity={6} // Up/down float intensity, works like a multiplier with floa
     onClick={handleClick }
     fillMaterial={{wireframe: false}}
     scale={0.01 }
-    src="https://threejs.org/examples/models/svg/tiger.svg"
+    src="./svg/instagram.svg"
     strokeMaterial={{
       wireframe: false
     }}/>
