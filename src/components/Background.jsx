@@ -43,8 +43,17 @@ const Section = ({text,hero, ...props}) => {
  return(
   <mesh ref={myMesh}  {...props}>
      <Center>
-      <Text position-y={2} fontSize={1} color={"white"}> {text} </Text>
-      <Text fontSize={0.15} color={"white"}> {hero} </Text>
+      <Text position-y={2} fontSize={1} color={"white"}
+                          outlineWidth={0.01}
+                          outlineColor="black"
+                          outlineOpacity={0.6}> {text} </Text>
+      <Text fontSize={0.15} color={"white"}
+                    
+                    outlineWidth={0.01}
+                    outlineColor="black"
+                    outlineOpacity={0.6}
+      
+      > {hero} </Text>
       </Center>
     
   </mesh>
@@ -105,6 +114,96 @@ const Cloud = ({ count = 1, radius = 10, ...props }) => {
     </group>
   )
 }
+
+const WordMap = ({ words, dimensions }) => {
+  const wordMeshes = useRef([]);
+
+  useFrame(() => {
+    const elapsedTime = window.performance.now() * 0.001;
+
+    wordMeshes.current.forEach((mesh, index) => {
+      const xPosition = (elapsedTime + index) % (dimensions.rows * dimensions.spacing)*(-1)**index;
+      mesh.position.setX(xPosition);
+    });
+  });
+
+  return (
+    <group rotation-y={Math.PI / 2} position={[-8,-28,0]}  rotation-x={Math.PI / 3.5} >
+      
+        {words.map((word, index) => (
+          <mesh
+            key={index}
+            position={[
+              -dimensions.width / 2 + (index % dimensions.columns) * dimensions.spacing,
+              index*dimensions.height / 2,
+              0,
+            ]}
+            ref={(mesh) => (wordMeshes.current[index] = mesh)}
+          >
+              <Text fontSize={5} color="black" > {word} </Text>
+          </mesh>
+        ))}
+      
+    </group>
+  );
+};
+
+const Wallpaper = () => {
+
+  const wordList = ['FORCE/ PERSEVERANCE/ RESPECT/', 'DETERMINATION/ PASSION/ COURAGE/', 'TRAVAIL/ PERSEVERANCE/ PASSION/ COURAGE/', 
+  'RESPECT/ DETERMINATION/ PASSION/ COURAGE/', 'COURAGE/ FORCE/ PERSEVERANCE/ RESPECT/','PERSEVERANCE/ FORCE/ PERSEVERANCE/ RESPECT/','PASSION/ RESPECT/',
+  'FORCE/ PERSEVERANCE/ RESPECT/',
+  'DETERMINATION/ PASSION/ COURAGE/',
+'PERSEVERANCE/',];
+  const mapDimensions = {
+    width: 5,
+    height: 9,
+    columns: 3,
+    rows: 10, // Adjust this based on the desired number of rows for the loop
+    spacing: 1,
+  };
+
+  return <WordMap words={wordList} dimensions={mapDimensions} />;
+
+  }
+/*
+const Wallpaper = () => {
+  const words = [
+    { text: 'FORCE /', color: 'black', offset: 0 },
+    { text: 'DETERMINATION /', color: 'transparent',offset: 7},
+    { text: 'DISCIPLINE /', color: 'black' ,offset: 22},
+    { text: 'PASSION /', color: 'transparent',offset: 34 },
+    { text: 'PERSEVERANCE /', color: 'black',offset: 43 },
+    { text: 'COURAGE /', color: 'transparent' ,offset: 57},
+    { text: 'RESPECT /', color: 'black',offset: 66 },
+    { text: 'TRAVAIL /', color: 'transparent',offset: 75 },
+    
+  ];
+  
+  const wordSpacing = 5.5; // Adjust the spacing between words
+
+  return (
+    <group rotation-y={Math.PI / 2} position={[-15,0,20]} rotation-x={Math.PI / 3.5}>
+      {words.map((word, index) => (
+        <Text
+          key={index}
+          color={word.color}
+          outlineColor="black"
+          position={[word.offset*wordSpacing, 0, 0]} // Evenly space the words          fontSize={3}
+          maxWidth={200}
+          outlineWidth={0.02}
+          outlineOpacity={1}
+          anchorX="left"
+          fontSize={10}
+
+          
+        >
+          {word.text}
+        </Text>
+      ))}
+    </group>
+  );
+};*/
 /* ********************************************** */
 //*******************   SCENE    ******************* */
 /****************************************
@@ -138,8 +237,17 @@ const CameraAnimation = ({ section }) => {
     
     
   });
+
+  if (section==1)
+  {return(<>
+          <color attach="background" args={['#f0f0f0']} />
+          <Wallpaper />
+  </>
+  )}
+  else 
+  {return null;}
   
-  return null;
+  
 };
 
 function Scene({ margin = 0.5 }) {

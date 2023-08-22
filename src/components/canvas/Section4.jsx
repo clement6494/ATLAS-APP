@@ -105,7 +105,9 @@ const Section4 = ({...props}) => {
             font="/Inter_Bold.json"
             >
             {`Contact`}
-            <meshNormalMaterial />
+            <meshStandardMaterial
+            color="#FF8F20"
+             />
           </Text3D>
           <Float
           floatIntensity={0.5}
@@ -124,7 +126,9 @@ const Section4 = ({...props}) => {
               font="/Inter_Bold.json"
               >
               {`\nUs now!`}
-              <meshNormalMaterial />
+              <meshStandardMaterial
+            color="#FF8F20"
+             />
             </Text3D>
           </Float>
       </Float>
