@@ -90,17 +90,22 @@ const text4 = useRef();
     <Billboard follow >
       <Center>
       <group 
-      position-x={-8} 
+      position-x={-11} 
       
       onPointerOver={(e) => {
         e.object.position.z=2
-        title1.current.position.z=6.5
-        title1.current.position.y=9
+        e.object.position.x+=1
+        title1.current.position.x+=0.7
+        title1.current.position.y+=7.5
+        title1.current.position.z+=1.5
+        
 
       }}
       onPointerOut={(e) => {e.object.position.z=0
-        title1.current.position.z=5
-        title1.current.position.y=1.5
+        e.object.position.x-=1
+        title1.current.position.x-=0.7
+        title1.current.position.y-=7.5
+        title1.current.position.z-=1.5
 
       }}       
 
@@ -114,25 +119,46 @@ const text4 = useRef();
                 
                 fontSize={0.8}
                 color="white"
-                
+                position={[0.7,1.5,5]}
                 anchorX="center"
                 anchorY="bottom-baseline"
               >
-                Performance
+                {`Performance`}
+              </Text>
+              <Text ref={text1}
+              fontSize={0.5}
+              color="red"
+              position={[0,8,6.5]}
+
+              fillOpacity={1}
+              >
+
+                {` Mise en place d’exercices pour optimiser les mouvements. 
+\nProgramme efficace dans le renforcement musculaire,
+\n et la prévention d'éventuelles blessures
+\n par adaptation du corps. `}
               </Text>
             </group>
 
             <group 
-            position-x={-3} 
+            position-x={-3.5} 
             
             
             onPointerOver={(e) => {
               e.object.position.z=2;
-              
+              title2.current.position.x+=0.5
+              title2.current.position.y+=7.5
+              title2.current.position.z+=1.5
             
             
             }}
-            onPointerOut={(e) => {e.object.position.z=0}}    
+            onPointerOut={(e) => {e.object.position.z=0
+              title2.current.position.x-=0.5
+              title2.current.position.y-=7.5
+              title2.current.position.z-=1.5
+            
+            
+            }}    
             
             >
               <Screen src={'./videos/PXL_20230515_134040482.mp4'} />
@@ -145,17 +171,22 @@ const text4 = useRef();
                 anchorX="center"
                 anchorZ="middle"
               >
-                {`Remise\nen Forme`}
+                {`  Remise\nen Forme`}
               </Text>
 
             </group>
 
-      <group position-x={3}  
+      <group position-x={3.5}  
       onPointerOver={(e) => {e.object.position.z=2
-        e.object.position.x=-2
+        title3.current.position.x-=0.5
+        title3.current.position.y+=7.5
+        title3.current.position.z+=1.5
       }}
       onPointerOut={(e) => {e.object.position.z=0
-        e.object.position.x=0
+        title3.current.position.x+=0.5
+        title3.current.position.y-=7.5
+        title3.current.position.z-=1.5
+        
       }}   
       
       >
@@ -173,13 +204,21 @@ const text4 = useRef();
               
             </group>
 
-            <group position-x={8} 
+            <group position-x={11} 
             onPointerOver={(e) => {e.object.position.z=2
-              e.object.position.x=2
+              e.object.position.x-=1
+              title4.current.position.x-=0.7
+              title4.current.position.y+=7.5
+              title4.current.position.z+=1.5
+
               
             }}
             onPointerOut={(e) => {e.object.position.z=0
-              e.object.position.x=0
+              e.object.position.x+=1
+              title4.current.position.x+=0.7
+              title4.current.position.y-=7.5
+              title4.current.position.z-=1.5
+
             }}   
             > 
               
