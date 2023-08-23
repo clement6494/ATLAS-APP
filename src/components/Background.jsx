@@ -120,21 +120,23 @@ const WordMap = ({ words, dimensions }) => {
 
   useFrame(() => {
     const elapsedTime = window.performance.now() * 0.001;
-
+    
     wordMeshes.current.forEach((mesh, index) => {
-      const xPosition = (elapsedTime + index) % (dimensions.rows * dimensions.spacing)*(-1)**index;
+      const shouldreverse = (elapsedTime % 2)>1 ? 1 : -1 ;
+      
+      const xPosition = (elapsedTime) % (dimensions.rows * dimensions.spacing)*(-1)**index*shouldreverse;
       mesh.position.setX(xPosition);
     });
   });
 
   return (
-    <group rotation-y={Math.PI / 2} position={[-8,-28,0]}  rotation-x={Math.PI / 3.5} >
+    <group rotation-y={Math.PI / 2} position={[-10,-28,20]}  rotation-x={Math.PI / 3.5} >
       
         {words.map((word, index) => (
           <mesh
             key={index}
             position={[
-              -dimensions.width / 2 + (index % dimensions.columns) * dimensions.spacing,
+              0,
               index*dimensions.height / 2,
               0,
             ]}
@@ -150,11 +152,11 @@ const WordMap = ({ words, dimensions }) => {
 
 const Wallpaper = () => {
 
-  const wordList = ['FORCE/ PERSEVERANCE/ RESPECT/', 'DETERMINATION/ PASSION/ COURAGE/', 'TRAVAIL/ PERSEVERANCE/ PASSION/ COURAGE/', 
-  'RESPECT/ DETERMINATION/ PASSION/ COURAGE/', 'COURAGE/ FORCE/ PERSEVERANCE/ RESPECT/','PERSEVERANCE/ FORCE/ PERSEVERANCE/ RESPECT/','PASSION/ RESPECT/',
-  'FORCE/ PERSEVERANCE/ RESPECT/',
-  'DETERMINATION/ PASSION/ COURAGE/',
-'PERSEVERANCE/',];
+  const wordList = ['FORCE/ PERSEVERANCE/ RESPECT/',
+   'DETERMINATION/ PASSION/ COURAGE/',
+    'TRAVAIL/ PERSEVERANCE/ PASSION/ COURAGE/', 
+    'TRAVAIL/ PERSEVERANCE/ PASSION/ COURAGE/', 
+];
   const mapDimensions = {
     width: 5,
     height: 9,
@@ -217,7 +219,7 @@ const CameraAnimation = ({ section }) => {
   const targetPosition = useRef({ x: 10, y: 0 , z: 0 });
   const targets = [ 
     {x: 0,y:1,z:-7},
-    {x: 10,y:1,z:0},
+    {x: 20,y:1,z:0},
     {x: 0,y:30,z:0},
     {x: 0,y:0,z:30},
     {x: 0,y:0,z:60},
