@@ -6,8 +6,9 @@ import {Section1 , Section2, Section3,Section4,Section5} from './canvas';
 /**import { ComputerCanvas } from './canvas' ; */
 
 import { Canvas, useFrame, useThree, extend } from '@react-three/fiber';
-import {Svg, OrbitControls, Preload, ScrollControls, useGLTF, useScroll,Text, useTexture, Center, Decal, Text3D, Billboard } from '@react-three/drei';
+import {Plane, Preload, useGLTF, Text, Center, Decal, Text3D, Billboard } from '@react-three/drei';
 import CanvasLoader from './Loader';
+import { MeshBasicMaterial, PlaneGeometry } from 'three';
 
 /** loading of the objects */
 const Gym = ({ ...props }) => {
@@ -23,37 +24,35 @@ const Gym = ({ ...props }) => {
   )
 }
 
-const Kettlebell = ({ ...props }) => {
-
-
-const Kettlebell = useGLTF('./3Dmodels/Kettlebell/scene.gltf')
-
-return (
-  <mesh  >
-
-      <primitive  object={Kettlebell.scene} {...props} />
-      <meshNormalMaterial color='red'  />
-
-  </mesh>
-)
-}
 
 const Section = ({text,hero, ...props}) => {
   const myMesh= useRef();
  return(
   <mesh ref={myMesh}  {...props}>
      <Center>
-      <Text position-y={2} fontSize={1} color={"white"}
+      <Text position-y={3} fontSize={1} color={"white"}
+                          textAlign='center'
+                          opacity={0}
                           outlineWidth={0.01}
                           outlineColor="black"
                           outlineOpacity={0.6}> {text} </Text>
-      <Text fontSize={0.15} color={"white"}
-                    
-                    outlineWidth={0.01}
-                    outlineColor="black"
-                    outlineOpacity={0.6}
-      
-      > {hero} </Text>
+      <group>
+        <mesh>
+        <Plane args={[5.2,3.7]} position-z={-0.1}  >
+        <meshBasicMaterial color='black' transparent={true} opacity={0.5} />
+        </Plane>
+        
+        </mesh>
+        <Text fontSize={0.2} color={"white"}
+                      textAlign='center'
+                      outlineWidth={0.02}
+                      outlineColor="black"
+                      outlineOpacity={0.9}
+                      maxWidth={5}
+                      
+        
+        > {hero} </Text>
+      </group>
       </Center>
     
   </mesh>
@@ -86,63 +85,42 @@ function RotatingTorus({text, ...props}) {
   </mesh>
   )
 
-
 }
 
-
-
-
-
-
-
-
-const Cloud = ({ count = 1, radius = 10, ...props }) => {
-  const group = useRef()
-  const theta = useMemo(() => Math.PI * 2 / count, [count])
-  useFrame((state) => {
-    const a = state.clock.getElapsedTime()
-    group.current.rotation.y = Math.cos(a / 2) * Math.PI
-  })
-  return (
-    <group ref={group} {...props}>
-      {Array(count).fill().map((_, i) => (
-        <mesh key={i} position={[Math.sin(theta * i) * radius, 0, Math.cos(theta * i) * radius]}>
-          <sphereGeometry args={[1, 32, 32]} />
-          <meshStandardMaterial color="white" transparent opacity={0.9} />
-        </mesh>
-      ))}
-    </group>
-  )
-}
 
 const WordMap = ({ words, dimensions }) => {
   const wordMeshes = useRef([]);
-
+  
   useFrame(() => {
     const elapsedTime = window.performance.now() * 0.001;
     
     wordMeshes.current.forEach((mesh, index) => {
-      const shouldreverse = (elapsedTime % 2)>1 ? 1 : -1 ;
       
-      const xPosition = (elapsedTime) % (dimensions.rows * dimensions.spacing)*(-1)**index*shouldreverse;
+      
+      const xPosition =  35+15*Math.sin( elapsedTime/25 )*(-1)**index;
       mesh.position.setX(xPosition);
     });
   });
 
   return (
-    <group rotation-y={Math.PI / 2} position={[-10,-28,20]}  rotation-x={Math.PI / 3.5} >
+    <group rotation-y={Math.PI / 2} position={[-10,-28,20]}  rotation-x={Math.PI / 5} >
       
         {words.map((word, index) => (
           <mesh
             key={index}
             position={[
-              0,
-              index*dimensions.height / 2,
+              15,
+              index*dimensions.height-5 ,
               0,
             ]}
             ref={(mesh) => (wordMeshes.current[index] = mesh)}
           >
-              <Text fontSize={5} color="black" > {word} </Text>
+              <Text fontSize={10} 
+              color={index%2==0 ? "black" : "transparent"}
+              
+              outlineColor="black"          
+              outlineWidth={0.02}
+              outlineOpacity={1} > {word} </Text>
           </mesh>
         ))}
       
@@ -152,14 +130,16 @@ const WordMap = ({ words, dimensions }) => {
 
 const Wallpaper = () => {
 
-  const wordList = ['FORCE/ PERSEVERANCE/ RESPECT/',
+  const wordList = [ 'FORCE/ PERSEVERANCE/ RESPECT/',
    'DETERMINATION/ PASSION/ COURAGE/',
     'TRAVAIL/ PERSEVERANCE/ PASSION/ COURAGE/', 
     'TRAVAIL/ PERSEVERANCE/ PASSION/ COURAGE/', 
+    'FORCE/ PERSEVERANCE/ RESPECT/',
+    'DETERMINATION/ PASSION/ COURAGE /',
 ];
   const mapDimensions = {
     width: 5,
-    height: 9,
+    height: 8,
     columns: 3,
     rows: 10, // Adjust this based on the desired number of rows for the loop
     spacing: 1,
@@ -168,49 +148,10 @@ const Wallpaper = () => {
   return <WordMap words={wordList} dimensions={mapDimensions} />;
 
   }
-/*
-const Wallpaper = () => {
-  const words = [
-    { text: 'FORCE /', color: 'black', offset: 0 },
-    { text: 'DETERMINATION /', color: 'transparent',offset: 7},
-    { text: 'DISCIPLINE /', color: 'black' ,offset: 22},
-    { text: 'PASSION /', color: 'transparent',offset: 34 },
-    { text: 'PERSEVERANCE /', color: 'black',offset: 43 },
-    { text: 'COURAGE /', color: 'transparent' ,offset: 57},
-    { text: 'RESPECT /', color: 'black',offset: 66 },
-    { text: 'TRAVAIL /', color: 'transparent',offset: 75 },
-    
-  ];
-  
-  const wordSpacing = 5.5; // Adjust the spacing between words
 
-  return (
-    <group rotation-y={Math.PI / 2} position={[-15,0,20]} rotation-x={Math.PI / 3.5}>
-      {words.map((word, index) => (
-        <Text
-          key={index}
-          color={word.color}
-          outlineColor="black"
-          position={[word.offset*wordSpacing, 0, 0]} // Evenly space the words          fontSize={3}
-          maxWidth={200}
-          outlineWidth={0.02}
-          outlineOpacity={1}
-          anchorX="left"
-          fontSize={10}
-
-          
-        >
-          {word.text}
-        </Text>
-      ))}
-    </group>
-  );
-};*/
 /* ********************************************** */
-//*******************   SCENE    ******************* */
-/****************************************
- * 
-/************************************** */
+/*******************   SCENE    ******************* */
+/*****************************************/
 
 /** handling of the camera movements */
 
@@ -220,7 +161,7 @@ const CameraAnimation = ({ section }) => {
   const targets = [ 
     {x: 0,y:1,z:-7},
     {x: 20,y:1,z:0},
-    {x: 0,y:30,z:0},
+    {x: -20,y:30,z:-20},
     {x: 0,y:0,z:30},
     {x: 0,y:0,z:60},
     {x: 0,y:0,z:70},
@@ -249,44 +190,8 @@ const CameraAnimation = ({ section }) => {
   else 
   {return null;}
   
-  
 };
 
-function Scene({ margin = 0.5 }) {
-  const { width, height } = useThree((state) => state.viewport)
-  return (
-    <>
-      <Center bottom right position={[-width / 2 + margin, height / 2 - margin, 0]}>
-        <Text3D letterSpacing={-0.06} size={0.5} >
-          top left
-          <meshStandardMaterial color="white" />
-        </Text3D>
-      </Center>
-      <Center top left position={[width / 2 - margin, -height / 2 + margin, 0]}>
-        <Text3D letterSpacing={-0.06} size={0.5} >
-          bottom right
-          <meshStandardMaterial color="white" />
-        </Text3D>
-      </Center>
-      <Center rotation={[-0.5, -0.25, 0]}>
-        <Text3D
-          curveSegments={32}
-          bevelEnabled
-          bevelSize={0.04}
-          bevelThickness={0.1}
-          height={0.5}
-          lineHeight={0.5}
-          letterSpacing={-0.06}
-          size={1.5}
-          >
-          {`hello\nworld`}
-          <meshNormalMaterial />
-        </Text3D>
-
-      </Center>
-    </>
-  )
-}
 
 const Content = () => {
 
@@ -341,12 +246,12 @@ const BackgroundScene = () => {
       }, 20);
 
     }
-    
-    
 
     
     console.log(section)
   };
+
+  /*-----sections texts-----*/
 
   const hero0=`Des programmes adaptés à tes objectifs et capacités
   \n associés à une routine d’échauffement et d’étirement. 
@@ -358,9 +263,6 @@ const BackgroundScene = () => {
   \n  ·Un suivi mensuel comprenant des programmes personnalisés et adaptés chaque semaine, des retours sur la techniques quotidiens ainsi que des conseils nutritionnels pour l'optimisation de la performance. 
   \n  ·Des sessions de coaching individuelles pour des conseils et une correction de mouvements en présentiel.
   \n  ·Des cours en téléconférence sur la morpho-anatomie et la physiologie du corps par rapport à l'entraînement.
-  \n\n·Je travaille avec des clients de tous horizons, qu'il s'agisse d'athlètes, de personnes occupées
-  \n qui cherchent à intégrer l'exercice dans leur emploi du temps chargé, de personnes
-  \n cherchant à perdre du poids ou à se remettre en forme après une blessure.
   `
 
   
@@ -368,7 +270,7 @@ const BackgroundScene = () => {
 
   
   return (
-    <div className='canvas-container'   > 
+    <div className='canvas-container'> 
       
       <Canvas onWheel={handleWheel}
       
@@ -377,30 +279,21 @@ const BackgroundScene = () => {
 
       <perspectiveCamera />
       <CameraAnimation section={section} />
-
-      
-
       
        <Suspense fallback={<CanvasLoader />}>
-             
-                    
+               
             <Gym    position={[2.5, 0, 0]} />
             <fog attach="fog" args={['#000000', 30, 50]}/>
             <Section position={[0, 2, -2]} rotation-y={Math.PI} text={'Tu recherches '} hero={hero0}/>
             <Section position={[5, 2, 0]} rotation-y={Math.PI / 2} text={'services'} hero={hero1}/>
-
-            <Section3 position={[0, 15,0]} />
-            <Section position={[10, -20, 0]} text={'section 4'}/>
-            
+            <Section3 position={[0, 15,0]} />         
             <Section4 position={[0, 0, 50]}/>
             
             <Content/>
             
         </Suspense>
         
-        <hemisphereLight intensity={1}
-      groundColor="white" />
-
+        <hemisphereLight intensity={1} groundColor="white" />
 
         <Preload all />
         

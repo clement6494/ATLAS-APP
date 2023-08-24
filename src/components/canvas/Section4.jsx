@@ -45,8 +45,8 @@ const Links = ({ ...props }) => {
 
 <>
 <Float
-position={[20,-38,2]}
-rotation-y={-Math.PI / 2}
+position={[0,-38,2]}
+rotation-y={-Math.PI }
 speed={1.5} // Animation speed, defaults to 1
 rotationIntensity={0.1} // XYZ rotation intensity, defaults to 1
 floatIntensity={6} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
@@ -55,7 +55,9 @@ floatIntensity={6} // Up/down float intensity, works like a multiplier with floa
   <Svg 
     onClick={handleClick }
     fillMaterial={{wireframe: false}}
-    scale={0.01 }
+    position={[40,50,20]}
+    
+    scale={0.5}
     src="./svg/instagram.svg"
     strokeMaterial={{
       wireframe: false
@@ -64,12 +66,12 @@ floatIntensity={6} // Up/down float intensity, works like a multiplier with floa
 <Svg 
     onClick={handleClick}
     fillMaterial={{wireframe: true}}
-    position={[20,-37,0]}
-    rotation-y={-Math.PI / 2}
-    scale={4 }
+    position={[5,2,50]}
+    
+    scale={0.1 }
     src="./svg/twitter.svg"
     strokeMaterial={{
-      wireframe: true
+      wireframe: false
     }}/>
 
 </>
