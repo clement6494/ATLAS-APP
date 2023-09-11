@@ -13,16 +13,16 @@
     "@emailjs/browser": "^3.11.0",
     "@react-three/drei": "^9.66.0",
     "@react-three/fiber": "^8.12.2",
+    "@supabase/supabase-js": "^2.33.2",
     "framer-motion": "^10.12.4",
     "maath": "^0.5.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "4.0.3",
     "react-router-dom": "^6.10.0",
+    "react-scripts": "4.0.3",
     "react-tilt": "^1.0.2",
     "react-vertical-timeline-component": "^3.6.0",
     "styled-components": "5.3.1"
-    
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
