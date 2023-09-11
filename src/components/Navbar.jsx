@@ -31,8 +31,8 @@ const Navbar = () => {
           <img src={logo} alt="logo" className='w-10 h-10 
           object-contain' />
           <p className='text-white text-[18px] font bold cursor-pointer flex '>
-            Ulysse &nbsp;
-          <span className='sm:block hidden'> | Coach Sportif</span></p>
+            Atlas &nbsp;
+          <span className='sm:block hidden'> | Coaching </span></p>
  
 
           </Link>

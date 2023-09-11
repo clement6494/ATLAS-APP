@@ -1,7 +1,7 @@
 import React, { Suspense, useRef, useState, useEffect, useMemo } from 'react';
 
 
-import { Sparkles,OrbitControls, Preload, ScrollControls,Float, useGLTF, useScroll,Text, useTexture, Center, Decal, Text3D, Billboard,Svg } from '@react-three/drei';
+import { Plane,Sparkles,OrbitControls, Preload, ScrollControls,Float, useGLTF, useScroll,Text, useTexture, Center, Decal, Text3D, Billboard,Svg } from '@react-three/drei';
 
 
 
@@ -27,72 +27,85 @@ const Atlas = ({ ...props }) => {
         size={5}
         speed={0.3}
         />
+                <Sparkles
+        position-x={6}
+        color="white"
+        count={100}
+        noise={1}
+        opacity={1}
+        scale={10}
+        size={5}
+        speed={0.3}
+        />
+        <Sparkles
+        position-x={-6}
+        color="white"
+        count={100}
+        noise={1}
+        opacity={1}
+        scale={10}
+        size={5}
+        speed={0.3}
+        />
         
         
     </mesh>
   )
   }
-  
 
 const Links = ({ ...props }) => {
-  const handleClick = () => {
+  const handleClick = (link) => {
     console.log('click');
-    window.open('https://www.instagram.com/halvor.j');
+    window.open(link);
 
   };
   
   return(
 
-<>
+< group  position={[0,0,45]} >
+
 <Float
-position={[0,-38,2]}
 rotation-y={-Math.PI }
-speed={1.5} // Animation speed, defaults to 1
-rotationIntensity={0.1} // XYZ rotation intensity, defaults to 1
-floatIntensity={6} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-//floatingRange={[1, 1.1]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
+speed={1.5} // Animation speed
+rotationIntensity={0.1} // XYZ rotation intensity
+floatIntensity={6} // Up/down float intensity
+//floatingRange={[1, 1.1]} // Range of y-axis values the object will float 
 >
   <Svg 
-    onClick={handleClick }
+    /*onClick={handleClick('https://www.instagram.com/halvor.j') }*/
     fillMaterial={{wireframe: false}}
-    position={[40,50,20]}
+    position={[5.5,2,-6]}
     
-    scale={0.5}
+    scale={0.05}
     src="./svg/instagram.svg"
     strokeMaterial={{
       wireframe: false
     }}/>
 </Float>
+<Float >
 <Svg 
-    onClick={handleClick}
-    fillMaterial={{wireframe: true}}
-    position={[5,2,50]}
+    /*onClick={handleClick('https://www.instagram.com/halvor.j')}*/
+    fillMaterial={{wireframe: false}}
+    position={[5,2,8]}
     
-    scale={0.1 }
-    src="./svg/twitter.svg"
+    scale={0.05 }
+    src="./svg/facebook.svg"
     strokeMaterial={{
       wireframe: false
     }}/>
+    </Float>
 
-</>
+</group>
   )
   }
 
 const Section4 = ({...props}) => {
   return (
-      
-    
-      
       < >
       <Links {...props} />
       <Atlas  {...props} />
-    
+
       <Center {...props} position={[0,0,55]}>
-        
-    
-      
-        
-        
       <Float >
           <Text3D
             curveSegments={32}
@@ -103,10 +116,10 @@ const Section4 = ({...props}) => {
             lineHeight={0.5}
             letterSpacing={-0.06}
             size={0.7}
-            
+            textAlign='center'
             font="/Inter_Bold.json"
             >
-            {`Contact`}
+            {`Contactes`}
             <meshStandardMaterial
             color="#FF8F20"
              />
@@ -116,6 +129,8 @@ const Section4 = ({...props}) => {
           speed={0.5}
           >
             <Text3D
+              position-x={1}
+              position-y={-0.2}
               curveSegments={32}
               bevelEnabled
               bevelSize={0.04}
@@ -124,10 +139,10 @@ const Section4 = ({...props}) => {
               lineHeight={0.5}
               letterSpacing={-0.06}
               size={0.7}
-              
+              textAlign='center'
               font="/Inter_Bold.json"
               >
-              {`\nUs now!`}
+              {`\nNous!`}
               <meshStandardMaterial
             color="#FF8F20"
              />
@@ -136,7 +151,20 @@ const Section4 = ({...props}) => {
       </Float>
 
       </Center>
+      <group position={[0,-2,57]} >
+ 
+      <Text  position-y={0.05} fontSize={0.08} color={"white"}
+                      textAlign='center'
+                      maxWidth={5}
+      > {`Clique sur le logo correspondant au réseau de ton choix ;)`} </Text>
       
+      <mesh>
+        <Plane args={[2.2,0.12]} position-z={-0.1}  >
+        <meshBasicMaterial color='black' transparent={true} opacity={0.8} />
+        </Plane>
+        
+        </mesh> 
+      </group>
     
     </>
   );

@@ -15,11 +15,11 @@ const Gym = ({ ...props }) => {
   
   const Gym = useGLTF('./3Dmodels/gym_complex/gym_complex.glb')
   return (
-    <mesh>
+    <mesh receiveShadow={true}>
       <primitive  object={Gym.scene} {...props} />
       <pointLight intensity={0.1} 
-      position={ [5,-50,-20] }  />
-        <pointLight position={[10,30,10]} intensity={0.5}    />
+      position={ [5,-50,-20] }   />
+        <pointLight position={[10,30,10]} intensity={0.5} castShadow={true}    />
     </mesh>
   )
 }
@@ -29,7 +29,7 @@ const Section = ({text,hero, ...props}) => {
   const myMesh= useRef();
  return(
   <mesh ref={myMesh}  {...props}>
-     <Center>
+     <Center position-y={1}>
       <Text position-y={3} fontSize={1} color={"white"}
                           textAlign='center'
                           opacity={0}
@@ -37,13 +37,8 @@ const Section = ({text,hero, ...props}) => {
                           outlineColor="black"
                           outlineOpacity={0.6}> {text} </Text>
       <group>
-        <mesh>
-        <Plane args={[5.2,3.7]} position-z={-0.1}  >
-        <meshBasicMaterial color='black' transparent={true} opacity={0.5} />
-        </Plane>
-        
-        </mesh>
-        <Text fontSize={0.2} color={"white"}
+ 
+        <Text  fontSize={0.25} color={"white"}
                       textAlign='center'
                       outlineWidth={0.02}
                       outlineColor="black"
@@ -54,8 +49,14 @@ const Section = ({text,hero, ...props}) => {
         > {hero} </Text>
       </group>
       </Center>
-    
+      <mesh>
+        <Plane args={[10,10]} position-z={-0.1}  >
+        <meshBasicMaterial color='black' transparent={true} opacity={0.1} />
+        </Plane>
+        
+        </mesh> 
   </mesh>
+
  )
 
 }
@@ -116,10 +117,10 @@ const WordMap = ({ words, dimensions }) => {
             ref={(mesh) => (wordMeshes.current[index] = mesh)}
           >
               <Text fontSize={10} 
-              color={index%2==0 ? "black" : "transparent"}
+              color={index%2==0 ? "black" : "#FFFFFF80"}
               
               outlineColor="black"          
-              outlineWidth={0.02}
+              outlineWidth={0.1}
               outlineOpacity={1} > {word} </Text>
           </mesh>
         ))}
@@ -160,8 +161,8 @@ const CameraAnimation = ({ section }) => {
   const targetPosition = useRef({ x: 10, y: 0 , z: 0 });
   const targets = [ 
     {x: 0,y:1,z:-7},
-    {x: 20,y:1,z:0},
-    {x: -20,y:30,z:-20},
+    {x: 10,y:1,z:0},
+    {x: 0,y:30,z:0},
     {x: 0,y:0,z:30},
     {x: 0,y:0,z:60},
     {x: 0,y:0,z:70},
@@ -172,18 +173,14 @@ const CameraAnimation = ({ section }) => {
   }, [section]);
 
   useFrame((state) => {
-    
     const step = 0.1;
-    
     state.camera.position.lerp(targetPosition.current, step);
     state.camera.lookAt(0,1,0);
-    
-    
   });
 
   if (section==1)
   {return(<>
-          <color attach="background" args={['#f0f0f0']} />
+          <color attach="background" args={['#e5e5e5']} />
           <Wallpaper />
   </>
   )}
@@ -275,7 +272,7 @@ const BackgroundScene = () => {
       <Canvas onWheel={handleWheel}
       
     gl={{preserveDrawingBuffer: true}}
-    > 
+     shadows > 
 
       <perspectiveCamera />
       <CameraAnimation section={section} />
@@ -289,7 +286,7 @@ const BackgroundScene = () => {
             <Section3 position={[0, 15,0]} />         
             <Section4 position={[0, 0, 50]}/>
             
-            <Content/>
+            
             
         </Suspense>
         

@@ -46,7 +46,6 @@ const VideoMaterial = ({ src, setVideo }) =>{
   texture.offset.x = 1
   texture.loop = 1
 
-
   useEffect(() => {
     // Move setVideo inside the useEffect hook
     setVideo?.(texture.image);
@@ -56,8 +55,6 @@ const VideoMaterial = ({ src, setVideo }) =>{
           side={useThree.DoubleSide} 
           map={texture} 
           toneMapped={false} 
-          
-
           />
 }
 
