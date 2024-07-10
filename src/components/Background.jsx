@@ -180,12 +180,17 @@ const CameraAnimation = ({ section }) => {
 
   if (section==1)
   {return(<>
-          <color attach="background" args={["grey"]} />
+          <color attach="background" args={["#e5e5e5"]} />
           <Wallpaper />
   </>
   )}
   else 
-  {return null;}
+  {return null(<>
+        <color attach="background" args={["black"]} />
+  
+  </>
+  )
+  }
   
 };
 
