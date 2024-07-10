@@ -180,7 +180,7 @@ const CameraAnimation = ({ section }) => {
 
   if (section==1)
   {return(<>
-          <color attach="background" args={section==2 ? "black" : "#e5e5e5"} />
+          <color attach="background" args={[section==2 ? "black" : "#e5e5e5"]} />
           <Wallpaper />
   </>
   )}
