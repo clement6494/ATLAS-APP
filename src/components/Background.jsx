@@ -185,7 +185,7 @@ const CameraAnimation = ({ section }) => {
   </>
   )}
   else 
-  {return null(<>
+  {return(<>
         <color attach="background" args={["black"]} />
   
   </>
