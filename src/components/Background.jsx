@@ -290,7 +290,7 @@ const BackgroundScene = () => {
             
         </Suspense>
         
-        <hemisphereLight intensity={1} groundColor="white" />
+        <hemisphereLight intensity={1} groundColor="black" />
 
         <Preload all />
         
